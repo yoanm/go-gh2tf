@@ -1,5 +1,7 @@
 # ghbranch
 
+Package ghbranch provide methods to create `github_branch` terraform resource
+
 ## Functions
 
 ### func [New](./resource.go#L11)
@@ -80,43 +82,43 @@ It returns `nil` if resource is empty
 
 ## Types
 
-### type [Config](./config.go#L9)
+### type [Config](./config.go#L12)
 
 `type Config struct { ... }`
 
 Config is the default implementation of `ConfigProvider`
 
-#### func (*Config) [BranchValue](./config.go#L34)
+#### func (*Config) [BranchValue](./config.go#L37)
 
 `func (c *Config) BranchValue() *cty.Value`
 
 BranchValue return the provided `github_branch` `branch` attribute value as `cty.String` or `nil` if not provided
 
-#### func (*Config) [HasResource](./config.go#L19)
+#### func (*Config) [HasResource](./config.go#L22)
 
 `func (c *Config) HasResource() bool`
 
 HasResource returns `true` in case at least `Config` and `Repository` value exist, else `false`
 
-#### func (*Config) [RepositoryValue](./config.go#L29)
+#### func (*Config) [RepositoryValue](./config.go#L32)
 
 `func (c *Config) RepositoryValue() *cty.Value`
 
 RepositoryValue return the provided `github_branch` `repository` attribute value as `cty.String` or `nil` if not provided
 
-#### func (*Config) [ResourceIdentifier](./config.go#L24)
+#### func (*Config) [ResourceIdentifier](./config.go#L27)
 
 `func (c *Config) ResourceIdentifier() string`
 
 ResourceIdentifier returns the provided terraform resource identifier
 
-#### func (*Config) [SourceBranchValue](./config.go#L39)
+#### func (*Config) [SourceBranchValue](./config.go#L42)
 
 `func (c *Config) SourceBranchValue() *cty.Value`
 
 SourceBranchValue return the provided `github_branch` `source_branch` attribute value as `cty.String` or `nil` if not provided
 
-#### func (*Config) [SourceShaValue](./config.go#L44)
+#### func (*Config) [SourceShaValue](./config.go#L47)
 
 `func (c *Config) SourceShaValue() *cty.Value`
 

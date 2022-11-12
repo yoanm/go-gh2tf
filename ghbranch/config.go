@@ -1,3 +1,6 @@
+/*
+Package ghbranch provides methods to create `github_branch` terraform resource
+*/
 package ghbranch
 
 import (
