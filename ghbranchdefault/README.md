@@ -10,14 +10,14 @@ Package ghbranchdefault provides methods to create `github_branch_default` terra
 
 New returns the `github_branch_default` terraform resource as `hclwrite.Block`
 
-It returns `nil` if resource is empty
+It returns `nil` if resource is empty.
 
 ```golang
 valGen := gh2tf.NewValueGenerator()
 repoName := "repository_name"
 branchName := "my_default_branch_name"
 
-res := &Config{
+res := &ghbranchdefault.Config{
     valGen,
     "res-id",
     &repoName,
@@ -26,7 +26,7 @@ res := &Config{
 repoNameAsLink := "github_repository.res-id.name"
 branchNameAsLink := "github_branch.res-id.branch"
 
-resWithLinks := &Config{
+resWithLinks := &ghbranchdefault.Config{
     valGen,
     "res-id-with-links",
     &repoNameAsLink,
@@ -34,8 +34,8 @@ resWithLinks := &Config{
 }
 
 hclFile := hclwrite.NewEmptyFile()
-hclFile.Body().AppendBlock(New(res))
-hclFile.Body().AppendBlock(New(resWithLinks))
+hclFile.Body().AppendBlock(ghbranchdefault.New(res))
+hclFile.Body().AppendBlock(ghbranchdefault.New(resWithLinks))
 fmt.Println(string(hclFile.Bytes()))
 ```
 
@@ -54,49 +54,51 @@ resource "github_branch_default" "res-id-with-links" {
 
 ### func [NewSignature](./resource.go#L22)
 
-`func NewSignature(c ConfigProvider) *tfsig.BlockSignature`
+`func NewSignature(conf ConfigProvider) *tfsig.BlockSignature`
 
 NewSignature returns the `github_branch_default` terraform resource as `tfsig.BlockSignature`
 
-It returns `nil` if resource is empty
+It returns `nil` if resource is empty.
 
 ## Types
 
-### type [Config](./config.go#L12)
+### type [Config](./config.go#L14)
 
 `type Config struct { ... }`
 
-Config is the default implementation of `ConfigProvider`
+Config is the default implementation of `ConfigProvider`.
 
-#### func (*Config) [BranchValue](./config.go#L35)
+#### func (*Config) [BranchValue](./config.go#L39)
 
 `func (c *Config) BranchValue() *cty.Value`
 
-BranchValue return the provided `github_branch_default` `branch` attribute value as `cty.String` or `nil` if not provided
+BranchValue return the provided `github_branch_default` `branch` attribute value as `cty.String`
+or `nil` if not provided.
 
-#### func (*Config) [HasResource](./config.go#L20)
+#### func (*Config) [HasResource](./config.go#L22)
 
 `func (c *Config) HasResource() bool`
 
-HasResource returns `true` in case both `BranchConfig` and `Repository` value exist, else `false`
+HasResource returns `true` in case both `BranchConfig` and `Repository` value exist, else `false`.
 
-#### func (*Config) [RepositoryValue](./config.go#L30)
+#### func (*Config) [RepositoryValue](./config.go#L33)
 
 `func (c *Config) RepositoryValue() *cty.Value`
 
-RepositoryValue return the provided `github_branch_default` `repository` attribute value as `cty.String` or `nil` if not provided
+RepositoryValue return the provided `github_branch_default` `repository` attribute value as `cty.String`
+or `nil` if not provided.
 
-#### func (*Config) [ResourceIdentifier](./config.go#L25)
+#### func (*Config) [ResourceIdentifier](./config.go#L27)
 
 `func (c *Config) ResourceIdentifier() string`
 
-ResourceIdentifier returns the provided terraform resource identifier
+ResourceIdentifier returns the provided terraform resource identifier.
 
 ### type [ConfigProvider](./config_provider.go#L6)
 
 `type ConfigProvider interface { ... }`
 
-ConfigProvider defines required methods to be used when creating `github_branch_default` terraform resource
+ConfigProvider defines required methods to be used when creating `github_branch_default` terraform resource.
 
 ---
 Readme created from Go doc with [goreadme](https://github.com/posener/goreadme)
