@@ -2,9 +2,10 @@ package ghbranchdefault
 
 import "github.com/zclconf/go-cty/cty"
 
-// ConfigProvider defines required methods to be used when creating `github_branch_default` terraform resource
+// ConfigProvider defines required methods to be used when creating `github_branch_default` terraform resource.
 type ConfigProvider interface {
-	// HasResource will indicate if resource has to be created (return `true` for instance to always create the resource even if empty)
+	// HasResource will indicate if resource has to be created (return `true` for instance to always
+	// create the resource even if empty)
 	HasResource() bool
 	// ResourceIdentifier returns the resource identifier
 	ResourceIdentifier() string

@@ -1,9 +1,10 @@
-package gh2tf
+package gh2tf_test
 
 import (
 	"fmt"
 
 	"github.com/hashicorp/hcl/v2/hclwrite"
+	"github.com/yoanm/go-gh2tf"
 	"github.com/yoanm/go-tfsig"
 )
 
@@ -18,7 +19,7 @@ func ExampleNewValueGenerator() {
 	explicitIdentStringValue := "explicit_ident.foo"
 	explicitIdentListStringValue := []string{"explicit_ident_item.foo", "explicit_ident_item.bar"}
 
-	valGen := NewValueGenerator()
+	valGen := gh2tf.NewValueGenerator()
 	sig := tfsig.NewEmptySignature("my_block")
 	sig.AppendAttribute("attr1", *valGen.ToString(&basicStringValue))
 	sig.AppendAttribute("attr2", *valGen.ToString(&localVal))
@@ -30,11 +31,14 @@ func ExampleNewValueGenerator() {
 	sig.AppendEmptyLine()
 	sig.AppendAttribute("attr8", *valGen.ToIdent(&explicitIdentStringValue))
 	sig.AppendAttribute("attr9", *valGen.ToIdentList(&explicitIdentListStringValue))
-	customValGen := NewValueGenerator("custom.")
+
+	customValGen := gh2tf.NewValueGenerator("custom.")
+
 	sig.AppendEmptyLine()
 	sig.AppendAttribute("attr10", *customValGen.ToString(&customStringValue))
 
 	hclFile := hclwrite.NewEmptyFile()
+
 	hclFile.Body().AppendBlock(sig.Build())
 	fmt.Println(string(hclFile.Bytes()))
 

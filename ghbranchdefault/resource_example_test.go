@@ -1,11 +1,11 @@
-package ghbranchdefault
+package ghbranchdefault_test
 
 import (
 	"fmt"
 
 	"github.com/hashicorp/hcl/v2/hclwrite"
-
 	"github.com/yoanm/go-gh2tf"
+	"github.com/yoanm/go-gh2tf/ghbranchdefault"
 )
 
 func ExampleNew() {
@@ -13,7 +13,7 @@ func ExampleNew() {
 	repoName := "repository_name"
 	branchName := "my_default_branch_name"
 
-	res := &Config{
+	res := &ghbranchdefault.Config{
 		valGen,
 		"res-id",
 		&repoName,
@@ -22,7 +22,7 @@ func ExampleNew() {
 	repoNameAsLink := "github_repository.res-id.name"
 	branchNameAsLink := "github_branch.res-id.branch"
 
-	resWithLinks := &Config{
+	resWithLinks := &ghbranchdefault.Config{
 		valGen,
 		"res-id-with-links",
 		&repoNameAsLink,
@@ -30,8 +30,8 @@ func ExampleNew() {
 	}
 
 	hclFile := hclwrite.NewEmptyFile()
-	hclFile.Body().AppendBlock(New(res))
-	hclFile.Body().AppendBlock(New(resWithLinks))
+	hclFile.Body().AppendBlock(ghbranchdefault.New(res))
+	hclFile.Body().AppendBlock(ghbranchdefault.New(resWithLinks))
 	fmt.Println(string(hclFile.Bytes()))
 
 	// Output:
