@@ -1,0 +1,54 @@
+linters:
+  presets:
+    - bugs
+    - comment
+    - complexity
+    - error
+    - format
+    - import
+    - metalinter
+    - module
+    - performance
+    - style
+    - test
+    - unused
+  enable:
+    - gofmt # To be sure it's always enabled
+    - govet # To be sure it's always enabled
+    - unused # see disabled linters below
+    - exportloopref # see disabled linters below
+    - revive # see disabled linters below
+    - unused # see disabled linters below
+  disable:
+    - structcheck # deprecated (since v1.49.0) due to: The owner seems to have abandoned the linter.  Replaced by unused.
+    - ifshort # deprecated (since v1.48.0) due to: The repository of the linter has been deprecated by the owner.
+    - interfacer # deprecated (since v1.38.0) due to: The repository of the linter has been archived by the owner.
+    - scopelint # deprecated (since v1.39.0) due to: The repository of the linter has been deprecated by the owner.  Replaced by exportloopref.
+    - nosnakecase # deprecated (since v1.48.1) due to: The repository of the linter has been deprecated by the owner.  Replaced by revive(var-naming).
+    - exhaustivestruct # deprecated (since v1.46.0) due to: The owner seems to have abandoned the linter.  Replaced by exhaustruct.
+    - maligned # deprecated (since v1.38.0) due to: The repository of the linter has been archived by the owner.  Replaced by govet 'fieldalignment'.
+    - varcheck # deprecated (since v1.49.0) due to: The owner seems to have abandoned the linter.  Replaced by unused.
+    - deadcode # deprecated (since v1.49.0) due to: The owner seems to have abandoned the linter.  Replaced by unused.
+    - golint # deprecated (since v1.41.0) due to: The repository of the linter has been archived by the owner.  Replaced by revive.
+
+linters-settings:
+  gofmt:
+    simplify: true
+  govet:
+    check-shadowing: true
+    enable:
+      - fieldalignment # To be sure it's always enabled, see disabled linters above
+  revive:
+    rules:
+      - name: var-naming
+        arguments:
+          - [ "ID", "URL" ] # AllowList
+          - [] # DenyList
+  stylecheck:
+    checks: ["all", "-ST1003"]
+issues:
+  exclude-rules:
+    # Exclude some linters from running on tests files.
+    - path: _test\.go
+      linters:
+        - funlen

@@ -1,11 +1,11 @@
-package ghbranch
+package ghbranch_test
 
 import (
 	"fmt"
 
 	"github.com/hashicorp/hcl/v2/hclwrite"
-
 	"github.com/yoanm/go-gh2tf"
+	"github.com/yoanm/go-gh2tf/ghbranch"
 )
 
 func ExampleNew() {
@@ -17,7 +17,7 @@ func ExampleNew() {
 	repoNameAsLink := "github_repository.res-id.name"
 	branchNameAsLink := "github_branch.res-id.branch"
 
-	res := &Config{
+	res := &ghbranch.Config{
 		valGen,
 		"res-id",
 		&repoName,
@@ -25,7 +25,7 @@ func ExampleNew() {
 		nil,
 		nil,
 	}
-	resWithSourceBranch := &Config{
+	resWithSourceBranch := &ghbranch.Config{
 		valGen,
 		"res-with-source-branch",
 		&repoNameAsLink,
@@ -33,7 +33,7 @@ func ExampleNew() {
 		&sourceBranch,
 		nil,
 	}
-	resWithSourceSha := &Config{
+	resWithSourceSha := &ghbranch.Config{
 		valGen,
 		"res-with-source-sha",
 		&repoName,
@@ -43,9 +43,9 @@ func ExampleNew() {
 	}
 
 	hclFile := hclwrite.NewEmptyFile()
-	hclFile.Body().AppendBlock(New(res))
-	hclFile.Body().AppendBlock(New(resWithSourceBranch))
-	hclFile.Body().AppendBlock(New(resWithSourceSha))
+	hclFile.Body().AppendBlock(ghbranch.New(res))
+	hclFile.Body().AppendBlock(ghbranch.New(resWithSourceBranch))
+	hclFile.Body().AppendBlock(ghbranch.New(resWithSourceSha))
 	fmt.Println(string(hclFile.Bytes()))
 
 	// Output:

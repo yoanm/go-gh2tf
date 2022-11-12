@@ -7,10 +7,12 @@ package gh2tf
 
 import "github.com/yoanm/go-tfsig"
 
-var defaultUnescapedStringPrefixList []string
-
-func init() {
-	defaultUnescapedStringPrefixList = []string{
+// NewIdentTokenMatcher returns an instance of IdentTokenMatcher with provided list of prefix
+// to consider as 'ident' tokens
+//
+// Default `tfsig` ident tokens and terraform gitHub resources will be automatically added.
+func NewIdentTokenMatcher(prefixList ...string) tfsig.IdentTokenMatcher {
+	defaultList := []string{
 		// gitHub provider resources name - START
 		"github_actions_environment_secret.",
 		"github_actions_organization_permissions.",
@@ -49,11 +51,6 @@ func init() {
 		"github_user_ssh_key.",
 		// gitHub provider resources name - END
 	}
-}
 
-// NewIdentTokenMatcher returns an instance of IdentTokenMatcher with provided list of prefix to consider as 'ident' tokens
-//
-// Default `tfsig` ident tokens and terraform gitHub resources will be automatically added
-func NewIdentTokenMatcher(prefixList ...string) tfsig.IdentTokenMatcher {
-	return tfsig.NewIdentTokenMatcher(append(prefixList, defaultUnescapedStringPrefixList...)...)
+	return tfsig.NewIdentTokenMatcher(append(prefixList, defaultList...)...)
 }

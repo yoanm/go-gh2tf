@@ -1,23 +1,25 @@
-package ghbranchdefault
+package ghbranchdefault_test
 
 import (
 	"testing"
 
-	"github.com/yoanm/go-tfsig/testutils"
-
 	"github.com/yoanm/go-gh2tf"
+	"github.com/yoanm/go-gh2tf/ghbranchdefault"
+	"github.com/yoanm/go-tfsig/testutils"
 )
 
 func TestNew(t *testing.T) {
+	t.Parallel()
+
 	valGen := gh2tf.NewValueGenerator()
 	repoName := "repository_name"
 	branchName := "my_branch_name"
 	cases := map[string]struct {
-		value      *Config
+		value      *ghbranchdefault.Config
 		goldenFile string
 	}{
 		"Basic": {
-			&Config{
+			&ghbranchdefault.Config{
 				valGen,
 				"default-branch-id",
 				&repoName,
@@ -26,7 +28,7 @@ func TestNew(t *testing.T) {
 			"base",
 		},
 		"Has not resource": {
-			&Config{valGen, "", nil, nil},
+			&ghbranchdefault.Config{valGen, "", nil, nil},
 			"empty",
 		},
 		"Nil config": {
@@ -35,12 +37,17 @@ func TestNew(t *testing.T) {
 		},
 	}
 
-	for tcname, tc := range cases {
+	for tcname, tcase := range cases {
+		tcase := tcase // For parallel execution
+
 		t.Run(
 			tcname,
 			func(t *testing.T) {
-				if err := testutils.EnsureBlockFileEqualsGoldenFile(New(tc.value), tc.goldenFile); err != nil {
-					t.Errorf("Case \"%s\": %v", tcname, err)
+				t.Parallel()
+
+				actual := ghbranchdefault.New(tcase.value)
+				if err := testutils.EnsureBlockFileEqualsGoldenFile(actual, tcase.goldenFile); err != nil {
+					t.Errorf("Case \"%s\": %v", t.Name(), err)
 				}
 			},
 		)

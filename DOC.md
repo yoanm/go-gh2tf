@@ -6,13 +6,14 @@ It provides methods to easily create GitHub HCL resources (`github_repository`, 
 
 ## Functions
 
-### func [NewIdentTokenMatcher](/token_ident_matcher.go#L57)
+### func [NewIdentTokenMatcher](/token_ident_matcher.go#L14)
 
 `func NewIdentTokenMatcher(prefixList ...string) tfsig.IdentTokenMatcher`
 
-NewIdentTokenMatcher returns an instance of IdentTokenMatcher with provided list of prefix to consider as 'ident' tokens
+NewIdentTokenMatcher returns an instance of IdentTokenMatcher with provided list of prefix
+to consider as 'ident' tokens
 
-Default `tfsig` ident tokens and terraform gitHub resources will be automatically added
+Default `tfsig` ident tokens and terraform gitHub resources will be automatically added.
 
 ### func [NewValueGenerator](/value_generator.go#L8)
 
@@ -20,7 +21,7 @@ Default `tfsig` ident tokens and terraform gitHub resources will be automaticall
 
 NewValueGenerator returns a new ValueGenerator with provided list of prefix to consider as 'ident' tokens
 
-Default `tfsig` ident tokens and terraform gitHub resources will be automatically added
+Default `tfsig` ident tokens and terraform gitHub resources will be automatically added.
 
 ```golang
 basicStringValue := "basic_value"
@@ -33,7 +34,7 @@ identListStringValue := []string{"github_branch.res-id.branch", "github_branch_p
 explicitIdentStringValue := "explicit_ident.foo"
 explicitIdentListStringValue := []string{"explicit_ident_item.foo", "explicit_ident_item.bar"}
 
-valGen := NewValueGenerator()
+valGen := gh2tf.NewValueGenerator()
 sig := tfsig.NewEmptySignature("my_block")
 sig.AppendAttribute("attr1", *valGen.ToString(&basicStringValue))
 sig.AppendAttribute("attr2", *valGen.ToString(&localVal))
@@ -45,11 +46,14 @@ sig.AppendAttribute("attr7", *valGen.ToStringList(&identListStringValue))
 sig.AppendEmptyLine()
 sig.AppendAttribute("attr8", *valGen.ToIdent(&explicitIdentStringValue))
 sig.AppendAttribute("attr9", *valGen.ToIdentList(&explicitIdentListStringValue))
-customValGen := NewValueGenerator("custom.")
+
+customValGen := gh2tf.NewValueGenerator("custom.")
+
 sig.AppendEmptyLine()
 sig.AppendAttribute("attr10", *customValGen.ToString(&customStringValue))
 
 hclFile := hclwrite.NewEmptyFile()
+
 hclFile.Body().AppendBlock(sig.Build())
 fmt.Println(string(hclFile.Bytes()))
 ```
