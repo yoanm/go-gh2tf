@@ -10,7 +10,7 @@ Package ghbranch provides methods to create `github_branch` terraform resource
 
 New returns the `github_branch` terraform resource as `hclwrite.Block`
 
-It returns `nil` if `NewSignature` returns nil
+It returns `nil` if resource is empty
 
 ```golang
 valGen := gh2tf.NewValueGenerator()

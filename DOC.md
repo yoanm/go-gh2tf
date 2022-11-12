@@ -79,5 +79,7 @@ my_block {
 
 * [ghbranchdefault](./ghbranchdefault): Package ghbranchdefault provides methods to create `github_branch_default` terraform resource
 
+* [ghbranchprotect](./ghbranchprotect): Package ghbranchprotect provides methods to create `github_branch_protection` terraform resource
+
 ---
 Readme created from Go doc with [goreadme](https://github.com/posener/goreadme)

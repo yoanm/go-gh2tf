@@ -7,7 +7,7 @@ import (
 
 // New returns the `github_branch` terraform resource as `hclwrite.Block`
 //
-// It returns `nil` if `NewSignature` returns nil
+// It returns `nil` if resource is empty
 func New(c ConfigProvider) *hclwrite.Block {
 	if signature := NewSignature(c); signature != nil {
 		return signature.Build()
