@@ -55,7 +55,7 @@ generate-doc:
 enhance-doc: ## 🗜️  Enhance packages doc
 enhance-doc:
 	# Add terraform style for raw blocks and fix links for sub-packages
-	sed ${SED_INPLACE_OPTION} -E -e ':a' -e 'N' -e '$$!ba' -e 's/```(\n)(resource ")/```terraform\1\2/g' DOC.md
+	@sed ${SED_INPLACE_OPTION} -E -e ':a' -e 'N' -e '$$!ba' -e 's/```(\n)(resource ")/```terraform\1\2/g' DOC.md
 	@find * -prune -type d -name "gh*" | while IFS= read -r d; do \
 		cd $$d; \
 		sed ${SED_INPLACE_OPTION} -E -e ':a' -e 'N' -e '$$!ba' -e 's/```(\n)(resource ")/```terraform\1\2/g' README.md; \

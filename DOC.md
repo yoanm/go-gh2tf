@@ -14,11 +14,13 @@ NewIdentTokenMatcher returns an instance of IdentTokenMatcher with provided list
 
 Default `tfsig` ident tokens and terraform gitHub resources will be automatically added
 
-### func [NewValueGenerator](/value_generator.go#L6)
+### func [NewValueGenerator](/value_generator.go#L8)
 
 `func NewValueGenerator(identPrefixList ...string) tfsig.ValueGenerator`
 
-NewValueGenerator returns a new ValueGenerator with all terraform gitHub resources escaped to consider as 'ident' tokens
+NewValueGenerator returns a new ValueGenerator with provided list of prefix to consider as 'ident' tokens
+
+Default `tfsig` ident tokens and terraform gitHub resources will be automatically added
 
 ```golang
 basicStringValue := "basic_value"
