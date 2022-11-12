@@ -6,7 +6,7 @@ It provides methods to easily create GitHub HCL resources (`github_repository`, 
 
 ## Functions
 
-### func [NewIdentTokenMatcher](/token_ident_matcher.go#L14)
+### func [NewIdentTokenMatcher](/token_ident_matcher.go#L54)
 
 `func NewIdentTokenMatcher(prefixList ...string) tfsig.IdentTokenMatcher`
 
