@@ -73,5 +73,9 @@ my_block {
 }
 ```
 
+## Sub Packages
+
+* [ghbranch](./ghbranch): Package ghbranch provides methods to create `github_branch` terraform resource
+
 ---
 Readme created from Go doc with [goreadme](https://github.com/posener/goreadme)
