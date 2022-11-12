@@ -38,26 +38,18 @@ configure-test-env:
 
 ##—— 📝 Documentation —————————————————————————————————————————————————
 .PHONY: build-doc
-build-doc: ## 🗜️  Generate and enhance packages doc
-build-doc: generate-doc enhance-doc
-
-.PHONY: generate-doc
-generate-doc: ## 🗜️  Generate packages doc
-generate-doc:
+.SILENT: build-doc
+build-doc: ## 🗜️  Generate packages doc
+build-doc:
+	echo "Generate doc for main package ..."
 	goreadme -constants -variabless -types -methods -functions -factories > DOC.md
-	@find * -prune -type d -name "gh*" | while IFS= read -r d; do \
+	# Add terraform style for raw blocks
+	sed ${SED_INPLACE_OPTION} -E -e ':a' -e 'N' -e '$$!ba' -e 's/```(\n)(resource ")/```terraform\1\2/g' DOC.md
+	# Generate doc for sub-packages, add terraform style for raw blocks and fix links
+	find * -prune -type d -name "gh*" | while IFS= read -r d; do \
+		echo "Generate doc for $$d sub-package ..."; \
   		cd $$d; \
   		goreadme -constants -variabless -types -methods -functions -factories > README.md; \
-  		cd ..; \
-	done
-
-.PHONY: enhance-doc
-enhance-doc: ## 🗜️  Enhance packages doc
-enhance-doc:
-	# Add terraform style for raw blocks and fix links for sub-packages
-	@sed ${SED_INPLACE_OPTION} -E -e ':a' -e 'N' -e '$$!ba' -e 's/```(\n)(resource ")/```terraform\1\2/g' DOC.md
-	@find * -prune -type d -name "gh*" | while IFS= read -r d; do \
-		cd $$d; \
 		sed ${SED_INPLACE_OPTION} -E -e ':a' -e 'N' -e '$$!ba' -e 's/```(\n)(resource ")/```terraform\1\2/g' README.md; \
 		sed ${SED_INPLACE_OPTION} -E "s/]\((\/.+)\.go/](.\1.go/g" README.md; \
 		cd ..; \

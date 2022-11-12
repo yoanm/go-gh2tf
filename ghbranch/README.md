@@ -1,6 +1,6 @@
 # ghbranch
 
-Package ghbranch provide methods to create `github_branch` terraform resource
+Package ghbranch provides methods to create `github_branch` terraform resource
 
 ## Functions
 
