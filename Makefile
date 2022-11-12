@@ -1,5 +1,12 @@
 # Based on that awesome makefile https://github.com/dunglas/symfony-docker/blob/main/docs/makefile.md#the-template
 
+# Sed in-place option behaves differently on linux and macOs
+ifeq ($(shell uname),Darwin)
+    SED_INPLACE_OPTION=-i ''
+else
+    SED_INPLACE_OPTION=-i
+endif
+
 .DEFAULT_GOAL = default
 
 .PHONY: default
@@ -48,11 +55,11 @@ generate-doc:
 enhance-doc: ## 🗜️  Enhance packages doc
 enhance-doc:
 	# Add terraform style for raw blocks and fix links for sub-packages
-	@sed -i '' -E -e ':a' -e 'N' -e '$$!ba' -e 's/```(\n)(resource ")/```terraform\1\2/g' DOC.md
+	sed ${SED_INPLACE_OPTION} -E -e ':a' -e 'N' -e '$$!ba' -e 's/```(\n)(resource ")/```terraform\1\2/g' DOC.md
 	@find * -prune -type d -name "gh*" | while IFS= read -r d; do \
 		cd $$d; \
-		sed -i '' -E -e ':a' -e 'N' -e '$$!ba' -e 's/```(\n)(resource ")/```terraform\1\2/g' README.md; \
-		sed -i '' -E "s/]\((\/.+)\.go/](.\1.go/g" README.md; \
+		sed ${SED_INPLACE_OPTION} -E -e ':a' -e 'N' -e '$$!ba' -e 's/```(\n)(resource ")/```terraform\1\2/g' README.md; \
+		sed ${SED_INPLACE_OPTION} -E "s/]\((\/.+)\.go/](.\1.go/g" README.md; \
 		cd ..; \
 	done
 
