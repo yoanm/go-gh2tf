@@ -2,9 +2,12 @@ package ghbranchprotect
 
 import "github.com/zclconf/go-cty/cty"
 
-// ConfigProvider defines required methods to be used when creating `github_branch_protection` terraform resource
+// ConfigProvider defines required methods to be used when creating `github_branch_protection` terraform resource.
+//
+//nolint:interfacebloat // Disabled as number of methods is based on number of terraform attributes
 type ConfigProvider interface {
-	// HasResource will indicate if resource has to be created (return `true` for instance to always create the resource even if empty)
+	// HasResource will indicate if resource has to be created (return `true` for instance to always create the
+	// resource even if empty)
 	HasResource() bool
 	// ResourceIdentifier returns the resource identifier
 	ResourceIdentifier() string
@@ -41,15 +44,20 @@ type ConfigProvider interface {
 	//
 	// If `nil` is returned, attribute will be omitted
 	RequireSignedCommitsValue() *cty.Value
-	// RequiredStatusChecksConfig return the config provider for `github_branch_protection->required_status_checks` block
+
+	// RequiredStatusChecksConfig return the config provider for
+	// `github_branch_protection->required_status_checks` block
 	RequiredStatusChecksConfig() RequiredStatusChecksConfigProvider
-	// RequiredPullRequestReviewsConfig return the config provider for `github_branch_protection->required_pull_request_reviews` block
+	// RequiredPullRequestReviewsConfig return the config provider for
+	// `github_branch_protection->required_pull_request_reviews` block
 	RequiredPullRequestReviewsConfig() RequiredPRReviewsConfigProvider
 }
 
-// RequiredStatusChecksConfigProvider defines required methods to be used when creating `github_branch_protection->required_status_checks` terraform block
+// RequiredStatusChecksConfigProvider defines required methods to be used when creating
+// `github_branch_protection->required_status_checks` terraform block.
 type RequiredStatusChecksConfigProvider interface {
-	// HasResource will indicate if resource has to be created (return `true` for instance to always create the resource even if empty)
+	// HasResource will indicate if resource has to be created (return `true` for instance to always create the
+	// resource even if empty)
 	HasResource() bool
 
 	// StrictValue return the `github_branch_protection->required_status_checks` `strict` attribute value.
@@ -62,28 +70,35 @@ type RequiredStatusChecksConfigProvider interface {
 	ContextValue() *cty.Value
 }
 
-// RequiredPRReviewsConfigProvider defines required methods to be used when creating `github_branch_protection->required_pull_request_reviews` terraform block
+// RequiredPRReviewsConfigProvider defines required methods to be used when creating
+// `github_branch_protection->required_pull_request_reviews` terraform block.
 type RequiredPRReviewsConfigProvider interface {
-	// HasResource will indicate if resource has to be created (return `true` for instance to always create the resource even if empty)
+	// HasResource will indicate if resource has to be created (return `true` for instance to always create the
+	// resource even if empty)
 	HasResource() bool
 
-	// DismissStaleReviewsValue return the `github_branch_protection->required_pull_request_reviews` `dismiss_stale_reviews` attribute value.
+	// DismissStaleReviewsValue return the `github_branch_protection->required_pull_request_reviews`
+	// `dismiss_stale_reviews` attribute value.
 	//
 	// If `nil` is returned, attribute will be omitted
 	DismissStaleReviewsValue() *cty.Value
-	// RestrictDismissalsValue return the `github_branch_protection->required_pull_request_reviews` `restrict_dismissals` attribute value.
+	// RestrictDismissalsValue return the `github_branch_protection->required_pull_request_reviews`
+	// `restrict_dismissals` attribute value.
 	//
 	// If `nil` is returned, attribute will be omitted
 	RestrictDismissalsValue() *cty.Value
-	// DismissalRestrictionsValue return the `github_branch_protection->required_pull_request_reviews` `dismissal_restrictions` attribute value.
+	// DismissalRestrictionsValue return the `github_branch_protection->required_pull_request_reviews`
+	// `dismissal_restrictions` attribute value.
 	//
 	// If `nil` is returned, attribute will be omitted
 	DismissalRestrictionsValue() *cty.Value
-	// RequireCodeOwnerReviewsValue return the `github_branch_protection->required_pull_request_reviews` `require_code_owner_reviews` attribute value.
+	// RequireCodeOwnerReviewsValue return the `github_branch_protection->required_pull_request_reviews`
+	// `require_code_owner_reviews` attribute value.
 	//
 	// If `nil` is returned, attribute will be omitted
 	RequireCodeOwnerReviewsValue() *cty.Value
-	// RequiredApprovingReviewCountValue return the `github_branch_protection->required_pull_request_reviews` `required_approving_review_count` attribute value.
+	// RequiredApprovingReviewCountValue return the `github_branch_protection->required_pull_request_reviews`
+	// `required_approving_review_count` attribute value.
 	//
 	// If `nil` is returned, attribute will be omitted
 	RequiredApprovingReviewCountValue() *cty.Value

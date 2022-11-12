@@ -1,14 +1,16 @@
-package ghbranchprotect
+package ghbranchprotect_test
 
 import (
 	"testing"
 
-	"github.com/yoanm/go-tfsig/testutils"
-
 	"github.com/yoanm/go-gh2tf"
+	"github.com/yoanm/go-gh2tf/ghbranchprotect"
+	"github.com/yoanm/go-tfsig/testutils"
 )
 
 func TestNew(t *testing.T) {
+	t.Parallel()
+
 	valGen := gh2tf.NewValueGenerator()
 	repoName := "repository_name"
 	branchPattern := "branch-pattern"
@@ -19,11 +21,11 @@ func TestNew(t *testing.T) {
 	dismissalRestrictions := []string{"dismissal-restriction"}
 	two := "2"
 	cases := map[string]struct {
-		value      *Config
+		value      *ghbranchprotect.Config
 		goldenFile string
 	}{
 		"Full": {
-			&Config{
+			&ghbranchprotect.Config{
 				valGen,
 				"branch-protection-id",
 				&repoName,
@@ -35,13 +37,13 @@ func TestNew(t *testing.T) {
 				&falseBool,
 				&trueBool,
 
-				&RequiredStatusChecksConfig{
+				&ghbranchprotect.RequiredStatusChecksConfig{
 					valGen,
 					&falseBool,
 					&contexts,
 				},
 
-				&RequiredPRReviewConfig{
+				&ghbranchprotect.RequiredPRReviewConfig{
 					valGen,
 					&trueBool,
 					&falseBool,
@@ -53,7 +55,7 @@ func TestNew(t *testing.T) {
 			"full",
 		},
 		"Short": {
-			&Config{
+			&ghbranchprotect.Config{
 				valGen,
 				"branch-protection-id",
 				&repoName,
@@ -71,7 +73,7 @@ func TestNew(t *testing.T) {
 			"short",
 		},
 		"Few #1": {
-			&Config{
+			&ghbranchprotect.Config{
 				valGen,
 				"branch-protection-id",
 				&repoName,
@@ -83,13 +85,13 @@ func TestNew(t *testing.T) {
 				nil,
 				&trueBool,
 
-				&RequiredStatusChecksConfig{
+				&ghbranchprotect.RequiredStatusChecksConfig{
 					valGen,
 					nil,
 					&contexts,
 				},
 
-				&RequiredPRReviewConfig{
+				&ghbranchprotect.RequiredPRReviewConfig{
 					valGen,
 					nil,
 					&trueBool,
@@ -102,7 +104,7 @@ func TestNew(t *testing.T) {
 		},
 
 		"Few #2": {
-			&Config{
+			&ghbranchprotect.Config{
 				valGen,
 				"branch-protection-id",
 				&repoName,
@@ -114,13 +116,13 @@ func TestNew(t *testing.T) {
 				&falseBool,
 				&trueBool,
 
-				&RequiredStatusChecksConfig{
+				&ghbranchprotect.RequiredStatusChecksConfig{
 					valGen,
 					&trueBool,
 					nil,
 				},
 
-				&RequiredPRReviewConfig{
+				&ghbranchprotect.RequiredPRReviewConfig{
 					valGen,
 					&trueBool,
 					nil,
@@ -132,7 +134,7 @@ func TestNew(t *testing.T) {
 			"few_2",
 		},
 		"Has not resource": {
-			&Config{valGen, "branch-protection-id", nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+			&ghbranchprotect.Config{valGen, "branch-protection-id", nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
 			"empty",
 		},
 		"Nil config": {
@@ -141,12 +143,17 @@ func TestNew(t *testing.T) {
 		},
 	}
 
-	for tcname, tc := range cases {
+	for tcname, tcase := range cases {
+		tcase := tcase // For parallel execution
+
 		t.Run(
 			tcname,
 			func(t *testing.T) {
-				if err := testutils.EnsureBlockFileEqualsGoldenFile(New(tc.value), tc.goldenFile); err != nil {
-					t.Errorf("Case \"%s\": %v", tcname, err)
+				t.Parallel()
+
+				actual := ghbranchprotect.New(tcase.value)
+				if err := testutils.EnsureBlockFileEqualsGoldenFile(actual, tcase.goldenFile); err != nil {
+					t.Errorf("Case \"%s\": %v", t.Name(), err)
 				}
 			},
 		)

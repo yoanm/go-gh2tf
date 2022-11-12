@@ -7,7 +7,7 @@ import (
 
 // New returns the `github_branch_protection` terraform resource as `hclwrite.Block`
 //
-// It returns `nil` if resource is empty
+// It returns `nil` if resource is empty.
 func New(c ConfigProvider) *hclwrite.Block {
 	if s := NewSignature(c); s != nil {
 		return s.Build()
@@ -18,99 +18,111 @@ func New(c ConfigProvider) *hclwrite.Block {
 
 // NewSignature returns the `github_branch_protection` terraform resource as `tfsig.BlockSignature`
 //
-// It returns `nil` if resource is empty
-func NewSignature(c ConfigProvider) *tfsig.BlockSignature {
-	if c == nil || !c.HasResource() {
+// It returns `nil` if resource is empty.
+//
+//nolint:cyclop // disabled as complexity is based on number of terraform attributes
+func NewSignature(conf ConfigProvider) *tfsig.BlockSignature {
+	if conf == nil || !conf.HasResource() {
 		return nil
 	}
 
-	sig := tfsig.NewEmptyResource("github_branch_protection", c.ResourceIdentifier())
+	sig := tfsig.NewEmptyResource("github_branch_protection", conf.ResourceIdentifier())
 
-	if v := c.RepositoryIdValue(); v != nil {
+	if v := conf.RepositoryIdValue(); v != nil {
 		sig.AppendAttribute("repository_id", *v)
 	}
-	if v := c.PatternValue(); v != nil {
+
+	if v := conf.PatternValue(); v != nil {
 		sig.AppendAttribute("pattern", *v)
 	}
-	if v := c.EnforceAdminsValue(); v != nil {
+
+	if v := conf.EnforceAdminsValue(); v != nil {
 		sig.AppendAttribute("enforce_admins", *v)
 	}
-	if v := c.AllowsDeletionsValue(); v != nil {
+
+	if v := conf.AllowsDeletionsValue(); v != nil {
 		sig.AppendAttribute("allows_deletions", *v)
 	}
-	if v := c.AllowsForcePushesValue(); v != nil {
+
+	if v := conf.AllowsForcePushesValue(); v != nil {
 		sig.AppendAttribute("allows_force_pushes", *v)
 	}
-	if v := c.PushRestrictionsValue(); v != nil {
+
+	if v := conf.PushRestrictionsValue(); v != nil {
 		sig.AppendAttribute("push_restrictions", *v)
 	}
-	if v := c.RequiredLinearHistoryValue(); v != nil {
+
+	if v := conf.RequiredLinearHistoryValue(); v != nil {
 		sig.AppendAttribute("required_linear_history", *v)
 	}
-	if v := c.RequireSignedCommitsValue(); v != nil {
+
+	if v := conf.RequireSignedCommitsValue(); v != nil {
 		sig.AppendAttribute("require_signed_commits", *v)
 	}
 
-	if v := c.RequiredStatusChecksConfig(); v != nil {
-		if s := NewRequiredStatusChecksSignature(v); s != nil {
-			sig.AppendEmptyLine()
-			sig.AppendChild(s)
-		}
+	if s := NewRequiredStatusChecksSignature(conf.RequiredStatusChecksConfig()); s != nil {
+		sig.AppendEmptyLine()
+		sig.AppendChild(s)
 	}
 
-	if v := c.RequiredPullRequestReviewsConfig(); v != nil {
-		if s := NewRequiredPRReviewsSignature(v); s != nil {
-			sig.AppendEmptyLine()
-			sig.AppendChild(s)
-		}
+	if s := NewRequiredPRReviewsSignature(conf.RequiredPullRequestReviewsConfig()); s != nil {
+		sig.AppendEmptyLine()
+		sig.AppendChild(s)
 	}
 
 	return sig
 }
 
-// NewRequiredPRReviewsSignature returns the `github_branch_protection->required_pull_request_reviews` terraform block as `tfsig.BlockSignature`
+// NewRequiredPRReviewsSignature returns the `github_branch_protection->required_pull_request_reviews` terraform block
+// as `tfsig.BlockSignature`
 //
-// It returns `nil` if resource is empty
-func NewRequiredPRReviewsSignature(c RequiredPRReviewsConfigProvider) *tfsig.BlockSignature {
-	if c == nil || !c.HasResource() {
+// It returns `nil` if resource is empty.
+func NewRequiredPRReviewsSignature(conf RequiredPRReviewsConfigProvider) *tfsig.BlockSignature {
+	if conf == nil || !conf.HasResource() {
 		return nil
 	}
 
 	sig := tfsig.NewEmptySignature("required_pull_request_reviews")
 
-	if v := c.DismissStaleReviewsValue(); v != nil {
+	if v := conf.DismissStaleReviewsValue(); v != nil {
 		sig.AppendAttribute("dismiss_stale_reviews", *v)
 	}
-	if v := c.RestrictDismissalsValue(); v != nil {
+
+	if v := conf.RestrictDismissalsValue(); v != nil {
 		sig.AppendAttribute("restrict_dismissals", *v)
 	}
-	if v := c.DismissalRestrictionsValue(); v != nil {
+
+	if v := conf.DismissalRestrictionsValue(); v != nil {
 		sig.AppendAttribute("dismissal_restrictions", *v)
 	}
-	if v := c.RequireCodeOwnerReviewsValue(); v != nil {
+
+	if v := conf.RequireCodeOwnerReviewsValue(); v != nil {
 		sig.AppendAttribute("require_code_owner_reviews", *v)
 	}
-	if v := c.RequiredApprovingReviewCountValue(); v != nil {
+
+	if v := conf.RequiredApprovingReviewCountValue(); v != nil {
 		sig.AppendAttribute("required_approving_review_count", *v)
 	}
 
 	return sig
 }
 
-// NewRequiredStatusChecksSignature returns the `github_branch_protection->required_status_checks` terraform block as `tfsig.BlockSignature`
+// NewRequiredStatusChecksSignature returns the `github_branch_protection->required_status_checks` terraform block
+// as `tfsig.BlockSignature`
 //
-// It returns `nil` if resource is empty
-func NewRequiredStatusChecksSignature(c RequiredStatusChecksConfigProvider) *tfsig.BlockSignature {
-	if c == nil || !c.HasResource() {
+// It returns `nil` if resource is empty.
+func NewRequiredStatusChecksSignature(conf RequiredStatusChecksConfigProvider) *tfsig.BlockSignature {
+	if conf == nil || !conf.HasResource() {
 		return nil
 	}
 
 	sig := tfsig.NewEmptySignature("required_status_checks")
 
-	if v := c.StrictValue(); v != nil {
+	if v := conf.StrictValue(); v != nil {
 		sig.AppendAttribute("strict", *v)
 	}
-	if v := c.ContextValue(); v != nil {
+
+	if v := conf.ContextValue(); v != nil {
 		sig.AppendAttribute("contexts", *v)
 	}
 

@@ -1,11 +1,11 @@
-package ghbranchprotect
+package ghbranchprotect_test
 
 import (
 	"fmt"
 
 	"github.com/hashicorp/hcl/v2/hclwrite"
-
 	"github.com/yoanm/go-gh2tf"
+	"github.com/yoanm/go-gh2tf/ghbranchprotect"
 )
 
 func ExampleNew() {
@@ -18,7 +18,7 @@ func ExampleNew() {
 	contexts := []string{"context"}
 	dismissalRestrictions := []string{"dismissal-restriction"}
 	two := "2"
-	res := &Config{
+	res := &ghbranchprotect.Config{
 		valGen,
 		"branch-protection-id",
 		&repoName,
@@ -30,13 +30,13 @@ func ExampleNew() {
 		&falseBool,
 		&trueBool,
 
-		&RequiredStatusChecksConfig{
+		&ghbranchprotect.RequiredStatusChecksConfig{
 			valGen,
 			&falseBool,
 			&contexts,
 		},
 
-		&RequiredPRReviewConfig{
+		&ghbranchprotect.RequiredPRReviewConfig{
 			valGen,
 			&trueBool,
 			&falseBool,
@@ -45,7 +45,7 @@ func ExampleNew() {
 			&two,
 		},
 	}
-	hclBlock := New(res)
+	hclBlock := ghbranchprotect.New(res)
 
 	hclFile := hclwrite.NewEmptyFile()
 	hclFile.Body().AppendBlock(hclBlock)
