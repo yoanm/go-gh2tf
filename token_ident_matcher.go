@@ -1,3 +1,8 @@
+/*
+Package gh2tf is an helper for terraform gitHub resources
+
+It provides methods to easily create GitHub HCL resources (`github_repository`, `github_branch`, etc)
+*/
 package gh2tf
 
 import "github.com/yoanm/go-tfsig"
