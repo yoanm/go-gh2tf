@@ -220,9 +220,9 @@ func repoBlock4(sig *tfsig.BlockSignature, conf ConfigProvider) {
 
 // repoBlock5 appends `allow_merge_commit`, `allow_rebase_merge`, `allow_squash_merge`, `allow_auto_merge`
 // and `delete_branch_on_merge` attributes.
-// It adds an empty line before in case there is existing attributes
+// It adds an empty line before in case there is existing attributes.
 //
-//nolint:cyclop // disabled as complexity is mostly based on number of terraform attributes
+//nolint:gocognit,cyclop // disabled as complexity is mostly based on number of terraform attributes
 func repoBlock5(sig *tfsig.BlockSignature, conf ConfigProvider) {
 	allowMergeCommit := conf.AllowMergeCommitValue()
 	allowRebaseMerge := conf.AllowRebaseMergeValue()

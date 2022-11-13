@@ -10,7 +10,7 @@ import (
 
 // Config is the default implementation of `ConfigProvider`.
 //
-//nolint:govet // "fieldalignment: struct with 48 pointer bytes could be 40" => better to keep ValueGenerator first
+
 type Config struct {
 	ValueGenerator        tfsig.ValueGenerator
 	Identifier            string
@@ -102,12 +102,12 @@ func (conf *Config) RequireSignedCommitsValue() *cty.Value {
 }
 
 // RequiredStatusChecksConfig return the provided `RequiredStatusChecksConfig`.
-func (conf *Config) RequiredStatusChecksConfig() RequiredStatusChecksConfigProvider { //nolint:ireturn
+func (conf *Config) RequiredStatusChecksConfig() RequiredStatusChecksConfigProvider { //nolint:ireturn,lll // Disabled as value is passed to a method expecting that interface
 	return conf.RequiredStatusChecks
 }
 
 // RequiredPullRequestReviewsConfig return the provided `RequiredPRReviewConfig`.
-func (conf *Config) RequiredPullRequestReviewsConfig() RequiredPRReviewsConfigProvider { //nolint:ireturn
+func (conf *Config) RequiredPullRequestReviewsConfig() RequiredPRReviewsConfigProvider { //nolint:ireturn,lll // Disabled as value is passed to a method expecting that interface
 	return conf.RequiredPRReview
 }
 

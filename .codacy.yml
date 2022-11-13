@@ -2,9 +2,6 @@ engines:
   duplication:
     exclude_paths:
       - "**_test.go"
-    skipDuplicateFiles: true
-    skipBlocks: true
-    skipBlocksPattern: "CPD-OFF|CPD-ON"
 exclude_paths:
   - "DOC.md" # Auto-generated doc
   - "ghbranch/README.md" # Auto-generated doc

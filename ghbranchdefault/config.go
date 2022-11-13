@@ -9,8 +9,6 @@ import (
 )
 
 // Config is the default implementation of `ConfigProvider`.
-//
-//nolint:govet // "fieldalignment: struct with 48 pointer bytes could be 40" => better to keep ValueGenerator first
 type Config struct {
 	ValueGenerator tfsig.ValueGenerator
 	Identifier     string
