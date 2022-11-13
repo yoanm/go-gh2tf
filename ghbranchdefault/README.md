@@ -4,7 +4,7 @@ Package ghbranchdefault provides methods to create `github_branch_default` terra
 
 ## Functions
 
-### func [New](./resource.go#L11)
+### func [New](./resource.go#L10)
 
 `func New(c ConfigProvider) *hclwrite.Block`
 
@@ -52,7 +52,7 @@ resource "github_branch_default" "res-id-with-links" {
 }
 ```
 
-### func [NewSignature](./resource.go#L22)
+### func [NewSignature](./signature.go#L10)
 
 `func NewSignature(conf ConfigProvider) *tfsig.BlockSignature`
 
