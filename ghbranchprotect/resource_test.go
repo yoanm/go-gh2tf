@@ -3,9 +3,10 @@ package ghbranchprotect_test
 import (
 	"testing"
 
+	"github.com/yoanm/go-tfsig/testutils"
+
 	"github.com/yoanm/go-gh2tf"
 	"github.com/yoanm/go-gh2tf/ghbranchprotect"
-	"github.com/yoanm/go-tfsig/testutils"
 )
 
 func TestNew(t *testing.T) {

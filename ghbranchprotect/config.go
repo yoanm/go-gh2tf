@@ -4,8 +4,9 @@ Package ghbranchprotect provides methods to create `github_branch_protection` te
 package ghbranchprotect
 
 import (
-	"github.com/yoanm/go-tfsig"
 	"github.com/zclconf/go-cty/cty"
+
+	"github.com/yoanm/go-tfsig"
 )
 
 // Config is the default implementation of `ConfigProvider`.
