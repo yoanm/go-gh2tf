@@ -5,6 +5,8 @@ import (
 	"github.com/yoanm/go-tfsig"
 )
 
+/** Public **/
+
 // New returns the `github_branch_protection` terraform resource as `hclwrite.Block`
 //
 // It returns `nil` if resource is empty.
@@ -19,8 +21,6 @@ func New(c ConfigProvider) *hclwrite.Block {
 // NewSignature returns the `github_branch_protection` terraform resource as `tfsig.BlockSignature`
 //
 // It returns `nil` if resource is empty.
-//
-//nolint:cyclop // disabled as complexity is based on number of terraform attributes
 func NewSignature(conf ConfigProvider) *tfsig.BlockSignature {
 	if conf == nil || !conf.HasResource() {
 		return nil
@@ -28,47 +28,17 @@ func NewSignature(conf ConfigProvider) *tfsig.BlockSignature {
 
 	sig := tfsig.NewEmptyResource("github_branch_protection", conf.ResourceIdentifier())
 
-	if v := conf.RepositoryIdValue(); v != nil {
-		sig.AppendAttribute("repository_id", *v)
-	}
+	appendAttrIfNotNil(sig, "repository_id", conf.RepositoryIdValue())
+	appendAttrIfNotNil(sig, "pattern", conf.PatternValue())
+	appendAttrIfNotNil(sig, "enforce_admins", conf.EnforceAdminsValue())
+	appendAttrIfNotNil(sig, "allows_deletions", conf.AllowsDeletionsValue())
+	appendAttrIfNotNil(sig, "allows_force_pushes", conf.AllowsForcePushesValue())
+	appendAttrIfNotNil(sig, "push_restrictions", conf.PushRestrictionsValue())
+	appendAttrIfNotNil(sig, "required_linear_history", conf.RequiredLinearHistoryValue())
+	appendAttrIfNotNil(sig, "require_signed_commits", conf.RequireSignedCommitsValue())
 
-	if v := conf.PatternValue(); v != nil {
-		sig.AppendAttribute("pattern", *v)
-	}
-
-	if v := conf.EnforceAdminsValue(); v != nil {
-		sig.AppendAttribute("enforce_admins", *v)
-	}
-
-	if v := conf.AllowsDeletionsValue(); v != nil {
-		sig.AppendAttribute("allows_deletions", *v)
-	}
-
-	if v := conf.AllowsForcePushesValue(); v != nil {
-		sig.AppendAttribute("allows_force_pushes", *v)
-	}
-
-	if v := conf.PushRestrictionsValue(); v != nil {
-		sig.AppendAttribute("push_restrictions", *v)
-	}
-
-	if v := conf.RequiredLinearHistoryValue(); v != nil {
-		sig.AppendAttribute("required_linear_history", *v)
-	}
-
-	if v := conf.RequireSignedCommitsValue(); v != nil {
-		sig.AppendAttribute("require_signed_commits", *v)
-	}
-
-	if s := NewRequiredStatusChecksSignature(conf.RequiredStatusChecksConfig()); s != nil {
-		sig.AppendEmptyLine()
-		sig.AppendChild(s)
-	}
-
-	if s := NewRequiredPRReviewsSignature(conf.RequiredPullRequestReviewsConfig()); s != nil {
-		sig.AppendEmptyLine()
-		sig.AppendChild(s)
-	}
+	appendBlockAndEmptyLineIfNotNil(sig, NewRequiredStatusChecksSignature(conf.RequiredStatusChecksConfig()))
+	appendBlockAndEmptyLineIfNotNil(sig, NewRequiredPRReviewsSignature(conf.RequiredPullRequestReviewsConfig()))
 
 	return sig
 }
@@ -84,25 +54,11 @@ func NewRequiredPRReviewsSignature(conf RequiredPRReviewsConfigProvider) *tfsig.
 
 	sig := tfsig.NewEmptySignature("required_pull_request_reviews")
 
-	if v := conf.DismissStaleReviewsValue(); v != nil {
-		sig.AppendAttribute("dismiss_stale_reviews", *v)
-	}
-
-	if v := conf.RestrictDismissalsValue(); v != nil {
-		sig.AppendAttribute("restrict_dismissals", *v)
-	}
-
-	if v := conf.DismissalRestrictionsValue(); v != nil {
-		sig.AppendAttribute("dismissal_restrictions", *v)
-	}
-
-	if v := conf.RequireCodeOwnerReviewsValue(); v != nil {
-		sig.AppendAttribute("require_code_owner_reviews", *v)
-	}
-
-	if v := conf.RequiredApprovingReviewCountValue(); v != nil {
-		sig.AppendAttribute("required_approving_review_count", *v)
-	}
+	appendAttrIfNotNil(sig, "dismiss_stale_reviews", conf.DismissStaleReviewsValue())
+	appendAttrIfNotNil(sig, "restrict_dismissals", conf.RestrictDismissalsValue())
+	appendAttrIfNotNil(sig, "dismissal_restrictions", conf.DismissalRestrictionsValue())
+	appendAttrIfNotNil(sig, "require_code_owner_reviews", conf.RequireCodeOwnerReviewsValue())
+	appendAttrIfNotNil(sig, "required_approving_review_count", conf.RequiredApprovingReviewCountValue())
 
 	return sig
 }
@@ -118,13 +74,8 @@ func NewRequiredStatusChecksSignature(conf RequiredStatusChecksConfigProvider) *
 
 	sig := tfsig.NewEmptySignature("required_status_checks")
 
-	if v := conf.StrictValue(); v != nil {
-		sig.AppendAttribute("strict", *v)
-	}
-
-	if v := conf.ContextValue(); v != nil {
-		sig.AppendAttribute("contexts", *v)
-	}
+	appendAttrIfNotNil(sig, "strict", conf.StrictValue())
+	appendAttrIfNotNil(sig, "contexts", conf.ContextValue())
 
 	return sig
 }
