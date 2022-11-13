@@ -1,0 +1,13 @@
+engines:
+  duplication:
+    exclude_paths:
+      - "**_test.go"
+    skipDuplicateFiles: true
+    skipBlocks: true
+    skipBlocksPattern: "CPD-OFF|CPD-ON"
+exclude_paths:
+  - "DOC.md" # Auto-generated doc
+  - "ghbranch/README.md" # Auto-generated doc
+  - "ghbranchdefault/README.md" # Auto-generated doc
+  - "ghbranchprotect/README.md" # Auto-generated doc
+  - "ghrepository/README.md" # Auto-generated doc
