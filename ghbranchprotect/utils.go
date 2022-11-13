@@ -11,9 +11,12 @@ func appendAttrIfNotNil(sig *tfsig.BlockSignature, attrName string, v *cty.Value
 	}
 }
 
-func appendBlockAndEmptyLineIfNotNil(sig *tfsig.BlockSignature, b *tfsig.BlockSignature) {
-	if b != nil {
-		sig.AppendEmptyLine()
-		sig.AppendChild(b)
+func appendChildIfNotNil(sig *tfsig.BlockSignature, child *tfsig.BlockSignature) {
+	if child != nil {
+		if len(sig.GetElements()) > 0 {
+			sig.AppendEmptyLine()
+		}
+
+		sig.AppendChild(child)
 	}
 }

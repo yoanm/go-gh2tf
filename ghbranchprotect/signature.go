@@ -25,8 +25,8 @@ func NewSignature(conf ConfigProvider) *tfsig.BlockSignature {
 	appendAttrIfNotNil(sig, "required_linear_history", conf.RequiredLinearHistoryValue())
 	appendAttrIfNotNil(sig, "require_signed_commits", conf.RequireSignedCommitsValue())
 
-	appendBlockAndEmptyLineIfNotNil(sig, NewRequiredStatusChecksSignature(conf.RequiredStatusChecksConfig()))
-	appendBlockAndEmptyLineIfNotNil(sig, NewRequiredPRReviewsSignature(conf.RequiredPullRequestReviewsConfig()))
+	appendChildIfNotNil(sig, NewRequiredStatusChecksSignature(conf.RequiredStatusChecksConfig()))
+	appendChildIfNotNil(sig, NewRequiredPRReviewsSignature(conf.RequiredPullRequestReviewsConfig()))
 
 	return sig
 }
