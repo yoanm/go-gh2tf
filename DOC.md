@@ -85,5 +85,7 @@ my_block {
 
 * [ghbranchprotect](./ghbranchprotect): Package ghbranchprotect provides methods to create `github_branch_protection` terraform resource
 
+* [ghrepository](./ghrepository): Package ghrepository provides methods to create `github_repository` terraform resource
+
 ---
 Readme created from Go doc with [goreadme](https://github.com/posener/goreadme)
