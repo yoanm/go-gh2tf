@@ -3,9 +3,10 @@ package ghbranchdefault_test
 import (
 	"testing"
 
+	"github.com/yoanm/go-tfsig/testutils"
+
 	"github.com/yoanm/go-gh2tf"
 	"github.com/yoanm/go-gh2tf/ghbranchdefault"
-	"github.com/yoanm/go-tfsig/testutils"
 )
 
 func TestNew(t *testing.T) {

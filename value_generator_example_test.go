@@ -4,8 +4,10 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/hcl/v2/hclwrite"
-	"github.com/yoanm/go-gh2tf"
+
 	"github.com/yoanm/go-tfsig"
+
+	"github.com/yoanm/go-gh2tf"
 )
 
 func ExampleNewValueGenerator() {

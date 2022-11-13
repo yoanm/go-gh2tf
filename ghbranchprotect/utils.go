@@ -1,8 +1,9 @@
 package ghbranchprotect
 
 import (
-	"github.com/yoanm/go-tfsig"
 	"github.com/zclconf/go-cty/cty"
+
+	"github.com/yoanm/go-tfsig"
 )
 
 func appendAttrIfNotNil(sig *tfsig.BlockSignature, attrName string, v *cty.Value) {

@@ -4,8 +4,9 @@ Package ghrepository provides methods to create `github_repository` terraform re
 package ghrepository
 
 import (
-	"github.com/yoanm/go-tfsig"
 	"github.com/zclconf/go-cty/cty"
+
+	"github.com/yoanm/go-tfsig"
 )
 
 // Config is the default implementation of `ConfigProvider`.
