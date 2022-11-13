@@ -4,7 +4,7 @@ Package ghbranch provides methods to create `github_branch` terraform resource
 
 ## Functions
 
-### func [New](./resource.go#L13)
+### func [New](./resource.go#L11)
 
 `func New(c ConfigProvider) *hclwrite.Block`
 
@@ -72,7 +72,7 @@ resource "github_branch" "res-with-source-sha" {
 }
 ```
 
-### func [NewSignature](./resource.go#L24)
+### func [NewSignature](./resource.go#L22)
 
 `func NewSignature(conf ConfigProvider) *tfsig.BlockSignature`
 

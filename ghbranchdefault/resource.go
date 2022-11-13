@@ -5,8 +5,6 @@ import (
 	"github.com/yoanm/go-tfsig"
 )
 
-// tell PMD-CPD to start ignoring code as it is duplicated over gh* packages (look for "CPD-ON" comment below) - CPD-OFF
-
 // New returns the `github_branch_default` terraform resource as `hclwrite.Block`
 //
 // It returns `nil` if resource is empty.
@@ -27,7 +25,6 @@ func NewSignature(conf ConfigProvider) *tfsig.BlockSignature {
 	}
 
 	sig := tfsig.NewEmptyResource("github_branch_default", conf.ResourceIdentifier())
-	// resume PMD-CPD analysis - CPD-ON
 
 	if v := conf.RepositoryValue(); v != nil {
 		sig.AppendAttribute("repository", *v)
