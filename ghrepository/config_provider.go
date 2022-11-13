@@ -101,24 +101,24 @@ type ConfigProvider interface {
 	// If `nil` is returned, attribute will be omitted
 	ArchiveOnDestroyValue() *cty.Value
 
-	// PagesConfig return the config provider for
-	// `github_repository->pages` block
+	// PagesConfig return the config provider for `github_repository->pages` block
 	PagesConfig() PagesConfigProvider
-	// TemplateConfig return the config provider for
-	// `github_repository->template` block
+	// TemplateConfig return the config provider for `github_repository->template` block
 	TemplateConfig() TemplateConfigProvider
 }
 
+// PagesConfigProvider defines required methods to be used when creating `github_repository->pages` terraform block.
 type PagesConfigProvider interface {
 	// HasResource will indicate if resource has to be created (return `true` for instance to always create the
 	// resource even if empty)
 	HasResource() bool
 
-	// SourceConfig return the config provider for
-	// `github_repository->pages->source` block
+	// SourceConfig return the config provider for `github_repository->pages->source` block
 	SourceConfig() PagesSourceConfigProvider
 }
 
+// PagesSourceConfigProvider defines required methods to be used when creating `github_repository->pages->source`
+// terraform block.
 type PagesSourceConfigProvider interface {
 	// HasResource will indicate if resource has to be created (return `true` for instance to always create the
 	// resource even if empty)
@@ -135,6 +135,8 @@ type PagesSourceConfigProvider interface {
 	PathValue() *cty.Value
 }
 
+// TemplateConfigProvider defines required methods to be used when creating `github_repository->template`
+// terraform block.
 type TemplateConfigProvider interface {
 	// HasResource will indicate if resource has to be created (return `true` for instance to always create the
 	// resource even if empty)
@@ -145,7 +147,7 @@ type TemplateConfigProvider interface {
 	// If `nil` is returned, attribute will be omitted
 	OwnerValue() *cty.Value
 
-	// OwnerValue return the `github_repository->template` `repository` attribute value.
+	// RepositoryValue return the `github_repository->template` `repository` attribute value.
 	//
 	// If `nil` is returned, attribute will be omitted
 	RepositoryValue() *cty.Value

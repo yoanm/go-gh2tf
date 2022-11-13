@@ -109,7 +109,7 @@ func NewPagesSourceSignature(conf PagesSourceConfigProvider) *tfsig.BlockSignatu
 	return sig
 }
 
-// NewPagesSignature returns the `github_repository->template` terraform block
+// NewTemplateSignature returns the `github_repository->template` terraform block
 // as `tfsig.BlockSignature`
 //
 // It returns `nil` if resource is empty.

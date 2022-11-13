@@ -144,7 +144,7 @@ It returns `nil` if resource is empty.
 
 `func NewTemplateSignature(conf TemplateConfigProvider) *tfsig.BlockSignature`
 
-NewPagesSignature returns the `github_repository->template` terraform block
+NewTemplateSignature returns the `github_repository->template` terraform block
 as `tfsig.BlockSignature`
 
 It returns `nil` if resource is empty.
@@ -359,9 +359,11 @@ HasResource returns `true` in case `Source` config exists and has resource, else
 
 SourceConfig returns the provided `PagesSourceConfigProvider`.
 
-### type [PagesConfigProvider](./config_provider.go#L112)
+### type [PagesConfigProvider](./config_provider.go#L111)
 
 `type PagesConfigProvider interface { ... }`
+
+PagesConfigProvider defines required methods to be used when creating `github_repository->pages` terraform block.
 
 ### type [PagesSourceConfig](./config.go#L50)
 
@@ -393,6 +395,9 @@ as `cty.String` or `nil` if not provided.
 
 `type PagesSourceConfigProvider interface { ... }`
 
+PagesSourceConfigProvider defines required methods to be used when creating `github_repository->pages->source`
+terraform block.
+
 ### type [TemplateConfig](./config.go#L57)
 
 `type TemplateConfig struct { ... }`
@@ -419,9 +424,12 @@ or `nil` if not provided.
 RepositoryValue returns the provided `github_repository->template` `repository` attribute value as `cty.String`
 or `nil` if not provided.
 
-### type [TemplateConfigProvider](./config_provider.go#L138)
+### type [TemplateConfigProvider](./config_provider.go#L140)
 
 `type TemplateConfigProvider interface { ... }`
+
+TemplateConfigProvider defines required methods to be used when creating `github_repository->template`
+terraform block.
 
 ---
 Readme created from Go doc with [goreadme](https://github.com/posener/goreadme)
