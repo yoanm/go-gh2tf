@@ -9,8 +9,6 @@ import (
 )
 
 // Config is the default implementation of `ConfigProvider`.
-//
-
 type Config struct {
 	ValueGenerator        tfsig.ValueGenerator
 	Identifier            string
