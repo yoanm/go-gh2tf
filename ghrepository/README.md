@@ -151,184 +151,184 @@ It returns `nil` if resource is empty.
 
 ## Types
 
-### type [Config](./config.go#L14)
+### type [Config](./config.go#L12)
 
 `type Config struct { ... }`
 
 Config is the default implementation of `ConfigProvider`.
 
-#### func (*Config) [AllowAutoMergeValue](./config.go#L171)
+#### func (*Config) [AllowAutoMergeValue](./config.go#L169)
 
 `func (c *Config) AllowAutoMergeValue() *cty.Value`
 
 AllowAutoMergeValue returns the provided `github_repository` `allow_auto_merge` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [AllowMergeCommitValue](./config.go#L153)
+#### func (*Config) [AllowMergeCommitValue](./config.go#L151)
 
 `func (c *Config) AllowMergeCommitValue() *cty.Value`
 
 AllowMergeCommitValue returns the provided `github_repository` `allow_merge_commit` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [AllowRebaseMergeValue](./config.go#L159)
+#### func (*Config) [AllowRebaseMergeValue](./config.go#L157)
 
 `func (c *Config) AllowRebaseMergeValue() *cty.Value`
 
 AllowRebaseMergeValue returns the provided `github_repository` `allow_rebase_merge` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [AllowSquashMergeValue](./config.go#L165)
+#### func (*Config) [AllowSquashMergeValue](./config.go#L163)
 
 `func (c *Config) AllowSquashMergeValue() *cty.Value`
 
 AllowSquashMergeValue returns the provided `github_repository` `allow_squash_merge` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [ArchiveOnDestroyValue](./config.go#L212)
+#### func (*Config) [ArchiveOnDestroyValue](./config.go#L210)
 
 `func (c *Config) ArchiveOnDestroyValue() *cty.Value`
 
 ArchiveOnDestroyValue returns the provided `github_repository` `archive_on_destroy` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [ArchivedValue](./config.go#L88)
+#### func (*Config) [ArchivedValue](./config.go#L86)
 
 `func (c *Config) ArchivedValue() *cty.Value`
 
 ArchivedValue returns the provided `github_repository` `archived` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [AutoInitValue](./config.go#L100)
+#### func (*Config) [AutoInitValue](./config.go#L98)
 
 `func (c *Config) AutoInitValue() *cty.Value`
 
 AutoInitValue returns the provided `github_repository` `auto_init` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [DeleteBranchOnMergeValue](./config.go#L201)
+#### func (*Config) [DeleteBranchOnMergeValue](./config.go#L199)
 
 `func (c *Config) DeleteBranchOnMergeValue() *cty.Value`
 
 DeleteBranchOnMergeValue returns the provided `github_repository` `delete_branch_on_merge` attribute value
 as `cty.Bool` or `nil` if not provided.
 
-#### func (*Config) [DescriptionValue](./config.go#L94)
+#### func (*Config) [DescriptionValue](./config.go#L92)
 
 `func (c *Config) DescriptionValue() *cty.Value`
 
 DescriptionValue returns the provided `github_repository` `description` attribute value as `cty.String`
 or `nil` if not provided.
 
-#### func (*Config) [HasDownloadsValue](./config.go#L124)
+#### func (*Config) [HasDownloadsValue](./config.go#L122)
 
 `func (c *Config) HasDownloadsValue() *cty.Value`
 
 HasDownloadsValue returns the provided `github_repository` `has_downloads` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [HasIssuesValue](./config.go#L106)
+#### func (*Config) [HasIssuesValue](./config.go#L104)
 
 `func (c *Config) HasIssuesValue() *cty.Value`
 
 HasIssuesValue returns the provided `github_repository` `has_issues` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [HasProjectsValue](./config.go#L112)
+#### func (*Config) [HasProjectsValue](./config.go#L110)
 
 `func (c *Config) HasProjectsValue() *cty.Value`
 
 HasProjectsValue returns the provided `github_repository` `has_projects` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [HasResource](./config.go#L64)
+#### func (*Config) [HasResource](./config.go#L62)
 
 `func (c *Config) HasResource() bool`
 
 HasResource returns `true` in case at least `Name` value exists, else `false`.
 
-#### func (*Config) [HasWikiValue](./config.go#L118)
+#### func (*Config) [HasWikiValue](./config.go#L116)
 
 `func (c *Config) HasWikiValue() *cty.Value`
 
 HasWikiValue returns the provided `github_repository` `has_wiki` attribute value as `cty.Bool`
 or `nil` if not provided.
 
-#### func (*Config) [HomepageUrlValue](./config.go#L130)
+#### func (*Config) [HomepageUrlValue](./config.go#L128)
 
 `func (c *Config) HomepageUrlValue() *cty.Value`
 
 HomepageUrlValue returns the provided `github_repository` `homepage_url` attribute value as `cty.String`
 or `nil` if not provided.
 
-#### func (*Config) [MergeCommitMessageValue](./config.go#L183)
+#### func (*Config) [MergeCommitMessageValue](./config.go#L181)
 
 `func (c *Config) MergeCommitMessageValue() *cty.Value`
 
 MergeCommitMessageValue returns the provided `github_repository` `merge_commit_message` attribute value
 as `cty.String` or `nil` if not provided.
 
-#### func (*Config) [MergeCommitTitleValue](./config.go#L177)
+#### func (*Config) [MergeCommitTitleValue](./config.go#L175)
 
 `func (c *Config) MergeCommitTitleValue() *cty.Value`
 
 MergeCommitTitleValue returns the provided `github_repository` `merge_commit_title` attribute value as `cty.String`
 or `nil` if not provided.
 
-#### func (*Config) [NameValue](./config.go#L76)
+#### func (*Config) [NameValue](./config.go#L74)
 
 `func (c *Config) NameValue() *cty.Value`
 
 NameValue returns the provided `github_repository` `name` attribute value as `cty.String`
 or `nil` if not provided.
 
-#### func (*Config) [PagesConfig](./config.go#L141)
+#### func (*Config) [PagesConfig](./config.go#L139)
 
 `func (c *Config) PagesConfig() PagesConfigProvider`
 
 PagesConfig returns the provided `PagesConfigProvider`.
 
-#### func (*Config) [ResourceIdentifier](./config.go#L70)
+#### func (*Config) [ResourceIdentifier](./config.go#L68)
 
 `func (c *Config) ResourceIdentifier() string`
 
 ResourceIdentifier returns the provided terraform resource identifier.
 
-#### func (*Config) [SquashMergeCommitMessageValue](./config.go#L195)
+#### func (*Config) [SquashMergeCommitMessageValue](./config.go#L193)
 
 `func (c *Config) SquashMergeCommitMessageValue() *cty.Value`
 
 SquashMergeCommitMessageValue returns the provided `github_repository` `squash_merge_commit_message` attribute value
 as `cty.String` or `nil` if not provided.
 
-#### func (*Config) [SquashMergeCommitTitleValue](./config.go#L189)
+#### func (*Config) [SquashMergeCommitTitleValue](./config.go#L187)
 
 `func (c *Config) SquashMergeCommitTitleValue() *cty.Value`
 
 SquashMergeCommitTitleValue returns the provided `github_repository` `squash_merge_commit_title` attribute value
 as `cty.String` or `nil` if not provided.
 
-#### func (*Config) [TemplateConfig](./config.go#L206)
+#### func (*Config) [TemplateConfig](./config.go#L204)
 
 `func (c *Config) TemplateConfig() TemplateConfigProvider`
 
 TemplateConfig returns the provided `TemplateConfigProvider`.
 
-#### func (*Config) [TopicsValue](./config.go#L136)
+#### func (*Config) [TopicsValue](./config.go#L134)
 
 `func (c *Config) TopicsValue() *cty.Value`
 
 TopicsValue returns the provided `github_repository` `topics` attribute value
 as `cty.List` of `cty.String` or `nil` if not provided.
 
-#### func (*Config) [VisibilityValue](./config.go#L82)
+#### func (*Config) [VisibilityValue](./config.go#L80)
 
 `func (c *Config) VisibilityValue() *cty.Value`
 
 VisibilityValue returns the provided `github_repository` `visibility` attribute value as `cty.String`
 or `nil` if not provided.
 
-#### func (*Config) [VulnerabilityAlertsValue](./config.go#L147)
+#### func (*Config) [VulnerabilityAlertsValue](./config.go#L145)
 
 `func (c *Config) VulnerabilityAlertsValue() *cty.Value`
 
@@ -341,19 +341,19 @@ as `cty.Bool` or `nil` if not provided.
 
 ConfigProvider defines required methods to be used when creating `github_repository` terraform resource.
 
-### type [PagesConfig](./config.go#L45)
+### type [PagesConfig](./config.go#L43)
 
 `type PagesConfig struct { ... }`
 
 PagesConfig is the default implementation of `PagesConfigProvider`.
 
-#### func (*PagesConfig) [HasResource](./config.go#L219)
+#### func (*PagesConfig) [HasResource](./config.go#L217)
 
 `func (c *PagesConfig) HasResource() bool`
 
 HasResource returns `true` in case `Source` config exists and has resource, else `false`.
 
-#### func (*PagesConfig) [SourceConfig](./config.go#L224)
+#### func (*PagesConfig) [SourceConfig](./config.go#L222)
 
 `func (c *PagesConfig) SourceConfig() PagesSourceConfigProvider`
 
@@ -365,26 +365,26 @@ SourceConfig returns the provided `PagesSourceConfigProvider`.
 
 PagesConfigProvider defines required methods to be used when creating `github_repository->pages` terraform block.
 
-### type [PagesSourceConfig](./config.go#L50)
+### type [PagesSourceConfig](./config.go#L48)
 
 `type PagesSourceConfig struct { ... }`
 
 PagesSourceConfig is the default implementation of `PagesSourceConfigProvider`.
 
-#### func (*PagesSourceConfig) [BranchValue](./config.go#L237)
+#### func (*PagesSourceConfig) [BranchValue](./config.go#L235)
 
 `func (c *PagesSourceConfig) BranchValue() *cty.Value`
 
 BranchValue returns the provided `github_repository->pages->source` `branch` attribute value
 as `cty.String` or `nil` if not provided.
 
-#### func (*PagesSourceConfig) [HasResource](./config.go#L231)
+#### func (*PagesSourceConfig) [HasResource](./config.go#L229)
 
 `func (c *PagesSourceConfig) HasResource() bool`
 
 HasResource returns `true` in case `Branch` value exists, else `false`.
 
-#### func (*PagesSourceConfig) [PathValue](./config.go#L243)
+#### func (*PagesSourceConfig) [PathValue](./config.go#L241)
 
 `func (c *PagesSourceConfig) PathValue() *cty.Value`
 
@@ -398,26 +398,26 @@ as `cty.String` or `nil` if not provided.
 PagesSourceConfigProvider defines required methods to be used when creating `github_repository->pages->source`
 terraform block.
 
-### type [TemplateConfig](./config.go#L57)
+### type [TemplateConfig](./config.go#L55)
 
 `type TemplateConfig struct { ... }`
 
 TemplateConfig is the default implementation of `TemplateConfigProvider`.
 
-#### func (*TemplateConfig) [HasResource](./config.go#L250)
+#### func (*TemplateConfig) [HasResource](./config.go#L248)
 
 `func (c *TemplateConfig) HasResource() bool`
 
 HasResource returns `true` in case both `Repository` and `Owner` values exist, else `false`.
 
-#### func (*TemplateConfig) [OwnerValue](./config.go#L256)
+#### func (*TemplateConfig) [OwnerValue](./config.go#L254)
 
 `func (c *TemplateConfig) OwnerValue() *cty.Value`
 
 OwnerValue returns the provided `github_repository->template` `owner` attribute value as `cty.String`
 or `nil` if not provided.
 
-#### func (*TemplateConfig) [RepositoryValue](./config.go#L262)
+#### func (*TemplateConfig) [RepositoryValue](./config.go#L260)
 
 `func (c *TemplateConfig) RepositoryValue() *cty.Value`
 

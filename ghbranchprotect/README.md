@@ -116,8 +116,6 @@ It returns `nil` if resource is empty.
 
 `type Config struct { ... }`
 
-Config is the default implementation of `ConfigProvider`.
-
 #### func (*Config) [AllowsDeletionsValue](./config.go#L76)
 
 `func (conf *Config) AllowsDeletionsValue() *cty.Value`

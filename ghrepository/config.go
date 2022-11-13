@@ -9,8 +9,6 @@ import (
 )
 
 // Config is the default implementation of `ConfigProvider`.
-//
-//nolint:govet // "fieldalignment: struct with 224 pointer bytes could be 216" => better to keep ValueGenerator first
 type Config struct {
 	ValueGenerator tfsig.ValueGenerator
 	Identifier     string
@@ -138,7 +136,7 @@ func (c *Config) TopicsValue() *cty.Value {
 }
 
 // PagesConfig returns the provided `PagesConfigProvider`.
-func (c *Config) PagesConfig() PagesConfigProvider { //nolint:ireturn
+func (c *Config) PagesConfig() PagesConfigProvider { //nolint:ireturn,lll // Disabled as value is passed to a method expecting that interface
 	return c.Page
 }
 
@@ -203,7 +201,7 @@ func (c *Config) DeleteBranchOnMergeValue() *cty.Value {
 }
 
 // TemplateConfig returns the provided `TemplateConfigProvider`.
-func (c *Config) TemplateConfig() TemplateConfigProvider { //nolint:ireturn
+func (c *Config) TemplateConfig() TemplateConfigProvider { //nolint:ireturn,lll // Disabled as value is passed to a method expecting that interface
 	return c.Template
 }
 
@@ -221,7 +219,7 @@ func (c *PagesConfig) HasResource() bool {
 }
 
 // SourceConfig returns the provided `PagesSourceConfigProvider`.
-func (c *PagesConfig) SourceConfig() PagesSourceConfigProvider { //nolint:ireturn
+func (c *PagesConfig) SourceConfig() PagesSourceConfigProvider { //nolint:ireturn,lll // Disabled as value is passed to a method expecting that interface
 	return c.Source
 }
 
