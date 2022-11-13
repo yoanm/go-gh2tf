@@ -4,7 +4,7 @@ Package ghbranchprotect provides methods to create `github_branch_protection` te
 
 ## Functions
 
-### func [New](./resource.go#L11)
+### func [New](./resource.go#L13)
 
 `func New(c ConfigProvider) *hclwrite.Block`
 
@@ -84,7 +84,7 @@ resource "github_branch_protection" "branch-protection-id" {
 }
 ```
 
-### func [NewRequiredPRReviewsSignature](./resource.go#L80)
+### func [NewRequiredPRReviewsSignature](./resource.go#L83)
 
 `func NewRequiredPRReviewsSignature(conf RequiredPRReviewsConfigProvider) *tfsig.BlockSignature`
 
@@ -93,7 +93,7 @@ as `tfsig.BlockSignature`
 
 It returns `nil` if resource is empty.
 
-### func [NewRequiredStatusChecksSignature](./resource.go#L114)
+### func [NewRequiredStatusChecksSignature](./resource.go#L117)
 
 `func NewRequiredStatusChecksSignature(conf RequiredStatusChecksConfigProvider) *tfsig.BlockSignature`
 
@@ -102,7 +102,7 @@ as `tfsig.BlockSignature`
 
 It returns `nil` if resource is empty.
 
-### func [NewSignature](./resource.go#L24)
+### func [NewSignature](./resource.go#L26)
 
 `func NewSignature(conf ConfigProvider) *tfsig.BlockSignature`
 

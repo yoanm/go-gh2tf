@@ -4,7 +4,7 @@ Package ghrepository provides methods to create `github_repository` terraform re
 
 ## Functions
 
-### func [New](./resource.go#L13)
+### func [New](./resource.go#L15)
 
 `func New(conf ConfigProvider) *hclwrite.Block`
 
@@ -114,7 +114,7 @@ resource "github_repository" "repository-id" {
 }
 ```
 
-### func [NewPagesSignature](./resource.go#L76)
+### func [NewPagesSignature](./resource.go#L79)
 
 `func NewPagesSignature(conf PagesConfigProvider) *tfsig.BlockSignature`
 
@@ -123,7 +123,7 @@ as `tfsig.BlockSignature`
 
 It returns `nil` if resource is empty.
 
-### func [NewPagesSourceSignature](./resource.go#L94)
+### func [NewPagesSourceSignature](./resource.go#L97)
 
 `func NewPagesSourceSignature(conf PagesSourceConfigProvider) *tfsig.BlockSignature`
 
@@ -132,7 +132,7 @@ as `tfsig.BlockSignature`
 
 It returns `nil` if resource is empty.
 
-### func [NewSignature](./resource.go#L24)
+### func [NewSignature](./resource.go#L26)
 
 `func NewSignature(conf ConfigProvider) *tfsig.BlockSignature`
 
@@ -140,7 +140,7 @@ NewSignature returns the `github_branch_protection` terraform resource as `tfsig
 
 It returns `nil` if resource is empty.
 
-### func [NewTemplateSignature](./resource.go#L116)
+### func [NewTemplateSignature](./resource.go#L119)
 
 `func NewTemplateSignature(conf TemplateConfigProvider) *tfsig.BlockSignature`
 
