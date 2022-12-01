@@ -19,8 +19,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/sergi/go-diff v1.0.0 h1:Kpca3qRNrduNnOQeazBd0ysaKrUJiIuISHxogkT9RPQ=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=
 github.com/stretchr/testify v1.2.2 h1:bSDNvY7ZPG5RlJ8otE/7V6gMiyenm9RtJ7IUVIAoJ1w=
-github.com/yoanm/go-tfsig v0.1.1 h1:tjTlymwp/KLNOkOa9rfWBbCdBVHfO/Dz8EDsAXe1CaU=
-github.com/yoanm/go-tfsig v0.1.1/go.mod h1:IHkkm18pcv+AqVsK2AseDSXlRPrM7K2R1luN3687BEk=
+github.com/yoanm/go-tfsig v0.2.0 h1:GyCabKiC6h5bvEj2VKXdIh6PR9HTf+AnrQuNTlT0dDs=
+github.com/yoanm/go-tfsig v0.2.0/go.mod h1:IHkkm18pcv+AqVsK2AseDSXlRPrM7K2R1luN3687BEk=
 github.com/zclconf/go-cty v1.12.1 h1:PcupnljUm9EIvbgSHQnHhUr3fO6oFmkOrvs2BAFNXXY=
 github.com/zclconf/go-cty v1.12.1/go.mod h1:s9IfD1LK5ccNMSWCVFCE2rJfHiZgi7JijgeWIMfhLvA=
 golang.org/x/text v0.3.7 h1:olpwvP2KacW1ZWvsR7uQhoyTYvKAupfQrRGBFM352Gk=

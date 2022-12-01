@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/hashicorp/hcl/v2 v2.14.1
-	github.com/yoanm/go-tfsig v0.1.1
+	github.com/yoanm/go-tfsig v0.2.0
 	github.com/zclconf/go-cty v1.12.1
 )
 
