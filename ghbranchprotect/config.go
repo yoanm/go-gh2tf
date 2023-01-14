@@ -126,7 +126,7 @@ func (c *RequiredStatusChecksConfig) StrictValue() *cty.Value {
 
 // ContextValue return the provided `github_branch_protection->required_status_checks` `contexts` attribute value
 // as `cty.List` of `cty.String` or `nil` if not provided.
-func (c *RequiredStatusChecksConfig) ContextValue() *cty.Value {
+func (c *RequiredStatusChecksConfig) ContextsValue() *cty.Value {
 	return c.ValueGenerator.ToStringList(c.Contexts)
 }
 

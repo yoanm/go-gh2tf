@@ -22,7 +22,7 @@ func ExampleNewValueGenerator() {
 	explicitIdentListStringValue := []string{"explicit_ident_item.foo", "explicit_ident_item.bar"}
 
 	valGen := gh2tf.NewValueGenerator()
-	sig := tfsig.NewEmptySignature("my_block")
+	sig := tfsig.NewSignature("my_block")
 	sig.AppendAttribute("attr1", *valGen.ToString(&basicStringValue))
 	sig.AppendAttribute("attr2", *valGen.ToString(&localVal))
 	sig.AppendAttribute("attr3", *valGen.ToString(&varVal))

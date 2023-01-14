@@ -264,9 +264,9 @@ RequiredPRReviewsConfigProvider defines required methods to be used when creatin
 
 RequiredStatusChecksConfig is the default implementation of `RequiredStatusChecksConfigProvider`.
 
-#### func (*RequiredStatusChecksConfig) [ContextValue](./config.go#L129)
+#### func (*RequiredStatusChecksConfig) [ContextsValue](./config.go#L129)
 
-`func (c *RequiredStatusChecksConfig) ContextValue() *cty.Value`
+`func (c *RequiredStatusChecksConfig) ContextsValue() *cty.Value`
 
 ContextValue return the provided `github_branch_protection->required_status_checks` `contexts` attribute value
 as `cty.List` of `cty.String` or `nil` if not provided.

@@ -12,15 +12,10 @@ func NewSignature(conf ConfigProvider) *tfsig.BlockSignature {
 		return nil
 	}
 
-	sig := tfsig.NewEmptyResource("github_branch_default", conf.ResourceIdentifier())
+	sig := tfsig.NewResource("github_branch_default", conf.ResourceIdentifier())
 
-	if v := conf.RepositoryValue(); v != nil {
-		sig.AppendAttribute("repository", *v)
-	}
-
-	if v := conf.BranchValue(); v != nil {
-		sig.AppendAttribute("branch", *v)
-	}
+	tfsig.AppendAttributeIfNotNil(sig, "repository", conf.RepositoryValue())
+	tfsig.AppendAttributeIfNotNil(sig, "branch", conf.BranchValue())
 
 	return sig
 }

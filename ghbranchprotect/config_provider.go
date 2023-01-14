@@ -64,10 +64,10 @@ type RequiredStatusChecksConfigProvider interface {
 	//
 	// If `nil` is returned, attribute will be omitted
 	StrictValue() *cty.Value
-	// ContextValue return the `github_branch_protection->required_status_checks` `contexts` attribute value.
+	// ContextsValue return the `github_branch_protection->required_status_checks` `contexts` attribute value.
 	//
 	// If `nil` is returned, attribute will be omitted
-	ContextValue() *cty.Value
+	ContextsValue() *cty.Value
 }
 
 // RequiredPRReviewsConfigProvider defines required methods to be used when creating
