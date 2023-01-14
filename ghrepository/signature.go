@@ -14,17 +14,17 @@ func NewSignature(conf ConfigProvider) *tfsig.BlockSignature {
 		return nil
 	}
 
-	sig := tfsig.NewEmptyResource("github_repository", conf.ResourceIdentifier())
+	sig := tfsig.NewResource("github_repository", conf.ResourceIdentifier())
 
 	repoBlock1(sig, conf)
 
 	repoBlock2(sig, conf)
 
-	appendChildIfNotNil(sig, NewTemplateSignature(conf.TemplateConfig()))
+	tfsig.AppendChildIfNotNil(sig, NewTemplateSignature(conf.TemplateConfig()))
 
 	repoBlock3(sig, conf)
 
-	appendChildIfNotNil(sig, NewPagesSignature(conf.PagesConfig()))
+	tfsig.AppendChildIfNotNil(sig, NewPagesSignature(conf.PagesConfig()))
 
 	repoBlock4(sig, conf)
 
@@ -54,7 +54,7 @@ func NewPagesSignature(conf PagesConfigProvider) *tfsig.BlockSignature {
 		return nil
 	}
 
-	sig := tfsig.NewEmptySignature("pages")
+	sig := tfsig.NewSignature("pages")
 
 	if subSig := NewPagesSourceSignature(conf.SourceConfig()); subSig != nil {
 		sig.AppendChild(subSig)
@@ -72,10 +72,10 @@ func NewPagesSourceSignature(conf PagesSourceConfigProvider) *tfsig.BlockSignatu
 		return nil
 	}
 
-	sig := tfsig.NewEmptySignature("source")
+	sig := tfsig.NewSignature("source")
 
-	appendAttrIfNotNil(sig, "branch", conf.BranchValue())
-	appendAttrIfNotNil(sig, "path", conf.PathValue())
+	tfsig.AppendAttributeIfNotNil(sig, "branch", conf.BranchValue())
+	tfsig.AppendAttributeIfNotNil(sig, "path", conf.PathValue())
 
 	return sig
 }
@@ -89,10 +89,10 @@ func NewTemplateSignature(conf TemplateConfigProvider) *tfsig.BlockSignature {
 		return nil
 	}
 
-	sig := tfsig.NewEmptySignature("template")
+	sig := tfsig.NewSignature("template")
 
-	appendAttrIfNotNil(sig, "owner", conf.OwnerValue())
-	appendAttrIfNotNil(sig, "repository", conf.RepositoryValue())
+	tfsig.AppendAttributeIfNotNil(sig, "owner", conf.OwnerValue())
+	tfsig.AppendAttributeIfNotNil(sig, "repository", conf.RepositoryValue())
 
 	return sig
 }
@@ -101,8 +101,8 @@ func NewTemplateSignature(conf TemplateConfigProvider) *tfsig.BlockSignature {
 
 // repoBlock1 appends `name` and `auto_init` attributes.
 func repoBlock1(sig *tfsig.BlockSignature, conf ConfigProvider) {
-	appendAttrIfNotNil(sig, "name", conf.NameValue())
-	appendAttrIfNotNil(sig, "auto_init", conf.AutoInitValue())
+	tfsig.AppendAttributeIfNotNil(sig, "name", conf.NameValue())
+	tfsig.AppendAttributeIfNotNil(sig, "auto_init", conf.AutoInitValue())
 }
 
 // repoBlock2 appends `visibility` and `description` attributes.
@@ -116,8 +116,8 @@ func repoBlock2(sig *tfsig.BlockSignature, conf ConfigProvider) {
 			sig.AppendEmptyLine()
 		}
 
-		appendAttrIfNotNil(sig, "visibility", visibility)
-		appendAttrIfNotNil(sig, "description", description)
+		tfsig.AppendAttributeIfNotNil(sig, "visibility", visibility)
+		tfsig.AppendAttributeIfNotNil(sig, "description", description)
 	}
 }
 
@@ -132,8 +132,8 @@ func repoBlock3(sig *tfsig.BlockSignature, conf ConfigProvider) {
 			sig.AppendEmptyLine()
 		}
 
-		appendAttrIfNotNil(sig, "topics", topics)
-		appendAttrIfNotNil(sig, "homepage_url", homepageUrl)
+		tfsig.AppendAttributeIfNotNil(sig, "topics", topics)
+		tfsig.AppendAttributeIfNotNil(sig, "homepage_url", homepageUrl)
 	}
 }
 
@@ -151,10 +151,10 @@ func repoBlock4(sig *tfsig.BlockSignature, conf ConfigProvider) {
 			sig.AppendEmptyLine()
 		}
 
-		appendAttrIfNotNil(sig, "has_issues", hasIssues)
-		appendAttrIfNotNil(sig, "has_projects", hasProjects)
-		appendAttrIfNotNil(sig, "has_wiki", hasWiki)
-		appendAttrIfNotNil(sig, "has_downloads", hasDownloads)
+		tfsig.AppendAttributeIfNotNil(sig, "has_issues", hasIssues)
+		tfsig.AppendAttributeIfNotNil(sig, "has_projects", hasProjects)
+		tfsig.AppendAttributeIfNotNil(sig, "has_wiki", hasWiki)
+		tfsig.AppendAttributeIfNotNil(sig, "has_downloads", hasDownloads)
 	}
 }
 
@@ -175,11 +175,11 @@ func repoBlock5(sig *tfsig.BlockSignature, conf ConfigProvider) {
 			sig.AppendEmptyLine()
 		}
 
-		appendAttrIfNotNil(sig, "allow_merge_commit", allowMergeCommit)
-		appendAttrIfNotNil(sig, "allow_rebase_merge", allowRebaseMerge)
-		appendAttrIfNotNil(sig, "allow_squash_merge", allowSquashMerge)
-		appendAttrIfNotNil(sig, "allow_auto_merge", allowAutoMerge)
-		appendAttrIfNotNil(sig, "delete_branch_on_merge", deleteBranchOnMerge)
+		tfsig.AppendAttributeIfNotNil(sig, "allow_merge_commit", allowMergeCommit)
+		tfsig.AppendAttributeIfNotNil(sig, "allow_rebase_merge", allowRebaseMerge)
+		tfsig.AppendAttributeIfNotNil(sig, "allow_squash_merge", allowSquashMerge)
+		tfsig.AppendAttributeIfNotNil(sig, "allow_auto_merge", allowAutoMerge)
+		tfsig.AppendAttributeIfNotNil(sig, "delete_branch_on_merge", deleteBranchOnMerge)
 	}
 }
 
@@ -199,10 +199,10 @@ func repoBlock6(sig *tfsig.BlockSignature, conf ConfigProvider) {
 			sig.AppendEmptyLine()
 		}
 
-		appendAttrIfNotNil(sig, "merge_commit_title", mergeCommitTitle)
-		appendAttrIfNotNil(sig, "merge_commit_message", mergeCommitMessage)
-		appendAttrIfNotNil(sig, "squash_merge_commit_title", squashMergeCommitTitle)
-		appendAttrIfNotNil(sig, "squash_merge_commit_message", squashMergeCommitMessage)
+		tfsig.AppendAttributeIfNotNil(sig, "merge_commit_title", mergeCommitTitle)
+		tfsig.AppendAttributeIfNotNil(sig, "merge_commit_message", mergeCommitMessage)
+		tfsig.AppendAttributeIfNotNil(sig, "squash_merge_commit_title", squashMergeCommitTitle)
+		tfsig.AppendAttributeIfNotNil(sig, "squash_merge_commit_message", squashMergeCommitMessage)
 	}
 }
 
@@ -217,7 +217,7 @@ func repoBlock7(sig *tfsig.BlockSignature, conf ConfigProvider) {
 			sig.AppendEmptyLine()
 		}
 
-		appendAttrIfNotNil(sig, "archived", archived)
-		appendAttrIfNotNil(sig, "archive_on_destroy", archiveOnDestroy)
+		tfsig.AppendAttributeIfNotNil(sig, "archived", archived)
+		tfsig.AppendAttributeIfNotNil(sig, "archive_on_destroy", archiveOnDestroy)
 	}
 }

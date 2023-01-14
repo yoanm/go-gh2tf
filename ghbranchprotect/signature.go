@@ -14,19 +14,19 @@ func NewSignature(conf ConfigProvider) *tfsig.BlockSignature {
 		return nil
 	}
 
-	sig := tfsig.NewEmptyResource("github_branch_protection", conf.ResourceIdentifier())
+	sig := tfsig.NewResource("github_branch_protection", conf.ResourceIdentifier())
 
-	appendAttrIfNotNil(sig, "repository_id", conf.RepositoryIdValue())
-	appendAttrIfNotNil(sig, "pattern", conf.PatternValue())
-	appendAttrIfNotNil(sig, "enforce_admins", conf.EnforceAdminsValue())
-	appendAttrIfNotNil(sig, "allows_deletions", conf.AllowsDeletionsValue())
-	appendAttrIfNotNil(sig, "allows_force_pushes", conf.AllowsForcePushesValue())
-	appendAttrIfNotNil(sig, "push_restrictions", conf.PushRestrictionsValue())
-	appendAttrIfNotNil(sig, "required_linear_history", conf.RequiredLinearHistoryValue())
-	appendAttrIfNotNil(sig, "require_signed_commits", conf.RequireSignedCommitsValue())
+	tfsig.AppendAttributeIfNotNil(sig, "repository_id", conf.RepositoryIdValue())
+	tfsig.AppendAttributeIfNotNil(sig, "pattern", conf.PatternValue())
+	tfsig.AppendAttributeIfNotNil(sig, "enforce_admins", conf.EnforceAdminsValue())
+	tfsig.AppendAttributeIfNotNil(sig, "allows_deletions", conf.AllowsDeletionsValue())
+	tfsig.AppendAttributeIfNotNil(sig, "allows_force_pushes", conf.AllowsForcePushesValue())
+	tfsig.AppendAttributeIfNotNil(sig, "push_restrictions", conf.PushRestrictionsValue())
+	tfsig.AppendAttributeIfNotNil(sig, "required_linear_history", conf.RequiredLinearHistoryValue())
+	tfsig.AppendAttributeIfNotNil(sig, "require_signed_commits", conf.RequireSignedCommitsValue())
 
-	appendChildIfNotNil(sig, NewRequiredStatusChecksSignature(conf.RequiredStatusChecksConfig()))
-	appendChildIfNotNil(sig, NewRequiredPRReviewsSignature(conf.RequiredPullRequestReviewsConfig()))
+	tfsig.AppendChildIfNotNil(sig, NewRequiredStatusChecksSignature(conf.RequiredStatusChecksConfig()))
+	tfsig.AppendChildIfNotNil(sig, NewRequiredPRReviewsSignature(conf.RequiredPullRequestReviewsConfig()))
 
 	return sig
 }
@@ -40,13 +40,13 @@ func NewRequiredPRReviewsSignature(conf RequiredPRReviewsConfigProvider) *tfsig.
 		return nil
 	}
 
-	sig := tfsig.NewEmptySignature("required_pull_request_reviews")
+	sig := tfsig.NewSignature("required_pull_request_reviews")
 
-	appendAttrIfNotNil(sig, "dismiss_stale_reviews", conf.DismissStaleReviewsValue())
-	appendAttrIfNotNil(sig, "restrict_dismissals", conf.RestrictDismissalsValue())
-	appendAttrIfNotNil(sig, "dismissal_restrictions", conf.DismissalRestrictionsValue())
-	appendAttrIfNotNil(sig, "require_code_owner_reviews", conf.RequireCodeOwnerReviewsValue())
-	appendAttrIfNotNil(sig, "required_approving_review_count", conf.RequiredApprovingReviewCountValue())
+	tfsig.AppendAttributeIfNotNil(sig, "dismiss_stale_reviews", conf.DismissStaleReviewsValue())
+	tfsig.AppendAttributeIfNotNil(sig, "restrict_dismissals", conf.RestrictDismissalsValue())
+	tfsig.AppendAttributeIfNotNil(sig, "dismissal_restrictions", conf.DismissalRestrictionsValue())
+	tfsig.AppendAttributeIfNotNil(sig, "require_code_owner_reviews", conf.RequireCodeOwnerReviewsValue())
+	tfsig.AppendAttributeIfNotNil(sig, "required_approving_review_count", conf.RequiredApprovingReviewCountValue())
 
 	return sig
 }
@@ -60,10 +60,10 @@ func NewRequiredStatusChecksSignature(conf RequiredStatusChecksConfigProvider) *
 		return nil
 	}
 
-	sig := tfsig.NewEmptySignature("required_status_checks")
+	sig := tfsig.NewSignature("required_status_checks")
 
-	appendAttrIfNotNil(sig, "strict", conf.StrictValue())
-	appendAttrIfNotNil(sig, "contexts", conf.ContextValue())
+	tfsig.AppendAttributeIfNotNil(sig, "strict", conf.StrictValue())
+	tfsig.AppendAttributeIfNotNil(sig, "contexts", conf.ContextsValue())
 
 	return sig
 }
