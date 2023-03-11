@@ -3,7 +3,7 @@ module github.com/yoanm/go-gh2tf
 go 1.18
 
 require (
-	github.com/hashicorp/hcl/v2 v2.16.1
+	github.com/hashicorp/hcl/v2 v2.16.2
 	github.com/yoanm/go-tfsig v0.2.0
 	github.com/zclconf/go-cty v1.13.0
 )
