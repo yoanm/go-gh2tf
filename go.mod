@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/hashicorp/hcl/v2 v2.16.1
 	github.com/yoanm/go-tfsig v0.2.0
-	github.com/zclconf/go-cty v1.12.1
+	github.com/zclconf/go-cty v1.13.0
 )
 
 require (
