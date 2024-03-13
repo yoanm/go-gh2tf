@@ -1,11 +1,9 @@
-######### HEADER TO REMOVE - END ##########
-# Based on https://github.com/yoanm/shared-config/blob/master/GitHub/dependabot.yml file
 version: 2
 updates:
 #
 #
 # [GHAction]
-#
+# Based on https://github.com/yoanm/shared-config/blob/master/GitHub/dependabot/github-action.yml file
 #
   - package-ecosystem: github-actions
     directory: /
@@ -21,10 +19,16 @@ updates:
       all-actions:
         applies-to: version-updates
         patterns: ['*']
+# Group all security updates inside the a single PR
+# No need to split prod/dev as there is only prod updates
+# +Most likely no need to split major and other updates either
+      SECURITY-all:
+        applies-to: security-updates
+        patterns: ['*']
 #
 #
 # [Go]
-#
+# Based on https://github.com/yoanm/shared-config/blob/master/GitHub/dependabot/gomod.yml file
 #
   - package-ecosystem: gomod
     directory: /
