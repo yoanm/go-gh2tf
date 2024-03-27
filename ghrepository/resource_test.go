@@ -187,8 +187,6 @@ func TestNew(t *testing.T) {
 	}
 
 	for tcname, tcase := range cases {
-		tcase := tcase // For parallel execution
-
 		t.Run(
 			tcname,
 			func(t *testing.T) {
