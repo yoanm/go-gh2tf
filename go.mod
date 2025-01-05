@@ -3,9 +3,9 @@ module github.com/yoanm/go-gh2tf
 go 1.22
 
 require (
-	github.com/hashicorp/hcl/v2 v2.22.0
+	github.com/hashicorp/hcl/v2 v2.23.0
 	github.com/yoanm/go-tfsig v0.2.3
-	github.com/zclconf/go-cty v1.15.0
+	github.com/zclconf/go-cty v1.16.0
 )
 
 require (
